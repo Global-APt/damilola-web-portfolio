@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portfolio | Akinrefon Damilola Rufus</title>
+
+    <meta name="description"
+        content="Portfolio of Akinrefon Damilola Rufus, IT and Web Support professional specializing in website maintenance, WordPress, hosting, DNS, IT troubleshooting and practical system development.">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* =====================================================
+           PORTFOLIO ACCORDION
+           ===================================================== */
+
+        .projects-section {
+            padding: 100px 0;
+            background: #f7f5f0;
+        }
+
+        .projects-intro {
+            max-width: 700px;
+            margin-bottom: 45px;
+        }
+
+        .projects-intro .section-label {
+            color: #b08d57;
+            margin-bottom: 15px;
+        }
+
+        .projects-intro h2 {
+            color: #182033;
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .projects-intro p {
+            color: #69717d;
+            line-height: 1.8;
+        }
+
+
+        /* PROJECT ACCORDION */
+
+        .project-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .project-item {
+            background: #ffffff;
+            border: 1px solid #dedbd4;
+            overflow: hidden;
+        }
+
+        .project-trigger {
+            width: 100%;
+            border: none;
+            background: #ffffff;
+            padding: 28px 32px;
+            display: grid;
+            grid-template-columns: 70px 1fr 45px;
+            align-items: center;
+            text-align: left;
+            cursor: pointer;
+            color: #182033;
+            font-family: inherit;
+        }
+
+        .project-trigger:hover {
+            background: #faf9f6;
+        }
+
+        .project-number {
+            color: #b08d57;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .project-trigger-content strong {
+            display: block;
+            color: #182033;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .project-trigger-content span {
+            color: #69717d;
+            font-size: 13px;
+        }
+
+        .project-icon {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #dedbd4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #182033;
+            font-size: 20px;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .project-item.open .project-icon {
+            transform: rotate(45deg);
+            background: #182033;
+            border-color: #182033;
+            color: #ffffff;
+        }
+
+
+        /* PROJECT CONTENT */
+
+        .project-panel {
+            display: none;
+            border-top: 1px solid #dedbd4;
+        }
+
+        .project-item.open .project-panel {
+            display: block;
+        }
+
+
+        /* =====================================================
+           LAIM PROJECT
+           ===================================================== */
+
+        .laim-panel {
+            padding: 40px;
+        }
+
+        .laim-project-header {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .project-label {
+            color: #b08d57;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+        }
+
+        .laim-project-header h2 {
+            color: #182033;
+            font-size: 38px;
+            line-height: 1.2;
+            margin: 15px 0 10px;
+        }
+
+        .project-role {
+            color: #b08d57;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .laim-project-header p {
+            color: #69717d;
+            line-height: 1.8;
+        }
+
+
+        /* LAIM IMAGES */
+
+        .laim-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .laim-image-card {
+            border: 1px solid #dedbd4;
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        .laim-image-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .laim-image-caption {
+            padding: 15px 18px;
+            border-top: 1px solid #dedbd4;
+        }
+
+        .laim-image-caption strong {
+            display: block;
+            color: #182033;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .laim-image-caption span {
+            color: #69717d;
+            font-size: 12px;
+        }
+
+
+        /* LAIM RESPONSIBILITIES */
+
+        .laim-responsibilities {
+            margin-top: 35px;
+            padding-top: 35px;
+            border-top: 1px solid #dedbd4;
+        }
+
+        .laim-responsibilities h3 {
+            color: #182033;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .laim-responsibility-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .laim-responsibility-grid span {
+            display: block;
+            padding: 12px 14px;
+            background: #f7f5f0;
+            border: 1px solid #dedbd4;
+            color: #182033;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           MRGS PROJECT
+           ===================================================== */
+
+        .mrgs-panel {
+            padding: 40px;
+        }
+
+        .mrgs-project-header {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .mrgs-project-header h2 {
+            color: #182033;
+            font-size: 38px;
+            line-height: 1.2;
+            margin: 15px 0;
+        }
+
+        .mrgs-project-header p {
+            color: #69717d;
+            line-height: 1.8;
+        }
+
+        .mrgs-role {
+            color: #b08d57;
+            font-weight: 700;
+        }
+
+
+        /* MRGS FEATURES */
+
+        .mrgs-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid #dedbd4;
+            border-bottom: 1px solid #dedbd4;
+            margin-bottom: 35px;
+        }
+
+        .mrgs-feature {
+            padding: 25px 20px;
+            border-right: 1px solid #dedbd4;
+        }
+
+        .mrgs-feature:last-child {
+            border-right: none;
+        }
+
+        .mrgs-feature-number {
+            color: #b08d57;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .mrgs-feature strong {
+            display: block;
+            color: #182033;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .mrgs-feature p {
+            color: #69717d;
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+
+        /* MRGS GALLERY */
+
+        .mrgs-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .mrgs-image-card {
+            background: #ffffff;
+            border: 1px solid #dedbd4;
+            overflow: hidden;
+        }
+
+        .mrgs-image-card:nth-child(3) {
+            grid-column: 1 / -1;
+        }
+
+        .mrgs-image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .mrgs-image-caption {
+            padding: 15px 18px;
+            border-top: 1px solid #dedbd4;
+        }
+
+        .mrgs-image-caption strong {
+            display: block;
+            color: #182033;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .mrgs-image-caption span {
+            color: #69717d;
+            font-size: 12px;
+        }
+
+
+        /* MRGS TECHNOLOGY */
+
+        .mrgs-technology {
+            margin-top: 35px;
+            padding-top: 35px;
+            border-top: 1px solid #dedbd4;
+        }
+
+        .mrgs-technology h3 {
+            color: #182033;
+            margin: 10px 0 18px;
+        }
+
+        .technology-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .technology-tags span {
+            padding: 9px 13px;
+            background: #f7f5f0;
+            border: 1px solid #dedbd4;
+            color: #182033;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           TROUBLESHOOTING PROJECT
+           ===================================================== */
+
+        .case-panel {
+            padding: 40px;
+        }
+
+        .case-header {
+            margin-bottom: 35px;
+        }
+
+        .case-number {
+            color: #b08d57;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+        }
+
+        .case-header h2 {
+            color: #182033;
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .case-header p {
+            color: #69717d;
+            line-height: 1.8;
+        }
+
+        .case-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid #dedbd4;
+            border-bottom: 1px solid #dedbd4;
+        }
+
+        .case-step {
+            padding: 25px;
+            border-right: 1px solid #dedbd4;
+        }
+
+        .case-step:last-child {
+            border-right: none;
+        }
+
+        .case-step-number {
+            color: #b08d57;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .case-step h3 {
+            color: #182033;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .case-step p {
+            color: #69717d;
+            font-size: 12px;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+
+        /* =====================================================
+           TECHNOLOGY AREAS
+           ===================================================== */
+
+        .portfolio-tools {
+            padding: 85px 0;
+            background: #ffffff;
+        }
+
+        .tools-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .tools-list span {
+            padding: 10px 15px;
+            border: 1px solid #dedbd4;
+            background: #f7f5f0;
+            color: #182033;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           MOBILE
+           ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .laim-project-header,
+            .mrgs-project-header {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .laim-responsibility-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mrgs-feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mrgs-feature:nth-child(2) {
+                border-right: none;
+            }
+
+            .mrgs-feature:nth-child(-n+2) {
+                border-bottom: 1px solid #dedbd4;
+            }
+
+            .case-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .case-step:nth-child(2) {
+                border-right: none;
+            }
+
+            .case-step:nth-child(-n+2) {
+                border-bottom: 1px solid #dedbd4;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .projects-section {
+                padding: 70px 0;
+            }
+
+            .projects-intro h2 {
+                font-size: 32px;
+            }
+
+            .project-trigger {
+                grid-template-columns: 45px 1fr 35px;
+                padding: 22px 18px;
+            }
+
+            .project-trigger-content strong {
+                font-size: 15px;
+            }
+
+            .project-trigger-content span {
+                font-size: 11px;
+            }
+
+            .laim-panel,
+            .mrgs-panel,
+            .case-panel {
+                padding: 22px;
+            }
+
+            .laim-gallery,
+            .mrgs-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .mrgs-image-card:nth-child(3) {
+                grid-column: auto;
+            }
+
+            .laim-responsibility-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mrgs-feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mrgs-feature {
+                border-right: none;
+                border-bottom: 1px solid #dedbd4;
+            }
+
+            .mrgs-feature:last-child {
+                border-bottom: none;
+            }
+
+            .case-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .case-step {
+                border-right: none;
+                border-bottom: 1px solid #dedbd4;
+            }
+
+            .case-step:last-child {
+                border-bottom: none;
+            }
+
+            .laim-project-header h2,
+            .mrgs-project-header h2,
+            .case-header h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="header">
+
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+                ADR<span>.</span>
+            </a>
+
+            <nav class="navigation">
+
+                <a href="index.html">Home</a>
+
+                <a href="about.html">About</a>
+
+                <a href="services.html">Services</a>
+
+                <a href="portfolio.html" class="active">
+                    Portfolio
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+            <a href="contact.html" class="nav-button">
+                Let's Talk
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         PORTFOLIO HERO
+         ===================================================== -->
+
+    <section class="portfolio-hero">
+
+        <div class="container">
+
+            <div class="section-label">
+                SELECTED WORK
+            </div>
+
+            <h1>
+                Practical Work.<br>
+                Real Support Experience.
+            </h1>
+
+            <p>
+                A selection of website support, maintenance,
+                technical troubleshooting and practical system
+                development work based on my professional experience.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PROJECTS ACCORDION
+         ===================================================== -->
+
+    <section class="projects-section">
+
+        <div class="container">
+
+            <div class="projects-intro">
+
+                <div class="section-label">
+                    SELECTED PROJECTS
+                </div>
+
+                <h2>
+                    Explore My Work
+                </h2>
+
+                <p>
+                    Select a project below to view the work,
+                    responsibilities, technologies and practical
+                    experience behind it.
+                </p>
+
+            </div>
+
+
+            <div class="project-accordion">
+
+
+                <!-- =================================================
+                     PROJECT 01 — LAIM HOTELS
+                     ================================================= -->
+
+                <div class="project-item open">
+
+                    <button
+                        class="project-trigger"
+                        type="button"
+                        aria-expanded="true">
+
+                        <span class="project-number">
+                            01
+                        </span>
+
+                        <span class="project-trigger-content">
+
+                            <strong>
+                                LAIM Hotels Website
+                            </strong>
+
+                            <span>
+                                Website Support &amp; Maintenance
+                            </span>
+
+                        </span>
+
+                        <span class="project-icon">
+                            +
+                        </span>
+
+                    </button>
+
+
+                    <div class="project-panel">
+
+                        <div class="laim-panel">
+
+
+                            <!-- PROJECT INTRO -->
+
+                            <div class="laim-project-header">
+
+                                <div>
+
+                                    <span class="project-label">
+                                        REAL PROFESSIONAL EXPERIENCE
+                                    </span>
+
+                                    <h2>
+                                        LAIM Hotels Website
+                                    </h2>
+
+                                    <div class="project-role">
+                                        Website Support &amp; Maintenance
+                                    </div>
+
+                                </div>
+
+
+                                <div>
+
+                                    <p>
+                                        I manage and maintain the LAIM Hotels
+                                        website as part of my IT Support
+                                        responsibilities. My role involves
+                                        keeping website information current,
+                                        supporting website operations and
+                                        resolving technical issues affecting
+                                        the site's availability and functionality.
+                                    </p>
+
+                                    <p>
+                                        I work across the website's WordPress
+                                        administration, hosting environment
+                                        and domain/DNS configuration while
+                                        supporting day-to-day content and
+                                        reservation updates.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- LAIM IMAGES -->
+
+                            <div class="laim-gallery">
+
+                                <div class="laim-image-card">
+
+                                    <img
+                                        src="images/laim-home.jpg"
+                                        alt="LAIM Hotels website homepage">
+
+                                    <div class="laim-image-caption">
+
+                                        <strong>
+                                            LAIM Hotels Homepage
+                                        </strong>
+
+                                        <span>
+                                            Website support and content management
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="laim-image-card">
+
+                                    <img
+                                        src="images/laim-services.jpg"
+                                        alt="LAIM Hotels services section">
+
+                                    <div class="laim-image-caption">
+
+                                        <strong>
+                                            Hotel Services &amp; Content
+                                        </strong>
+
+                                        <span>
+                                            Website information and service updates
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- LAIM RESPONSIBILITIES -->
+
+                            <div class="laim-responsibilities">
+
+                                <h3>
+                                    What I Manage
+                                </h3>
+
+                                <div class="laim-responsibility-grid">
+
+                                    <span>
+                                        Hotel Information
+                                    </span>
+
+                                    <span>
+                                        Room Information
+                                    </span>
+
+                                    <span>
+                                        Pricing Updates
+                                    </span>
+
+                                    <span>
+                                        Images &amp; Media
+                                    </span>
+
+                                    <span>
+                                        Bookings &amp; Reservations
+                                    </span>
+
+                                    <span>
+                                        WordPress Administration
+                                    </span>
+
+                                    <span>
+                                        Hosting &amp; cPanel
+                                    </span>
+
+                                    <span>
+                                        Domain &amp; DNS
+                                    </span>
+
+                                    <span>
+                                        Website Backups
+                                    </span>
+
+                                    <span>
+                                        Broken Links &amp; Pages
+                                    </span>
+
+                                    <span>
+                                        Website Error Resolution
+                                    </span>
+
+                                    <span>
+                                        General Maintenance
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PROJECT 02 — MRGS INVENTORY
+                     ================================================= -->
+
+                <div class="project-item">
+
+                    <button
+                        class="project-trigger"
+                        type="button"
+                        aria-expanded="false">
+
+                        <span class="project-number">
+                            02
+                        </span>
+
+                        <span class="project-trigger-content">
+
+                            <strong>
+                                MRGS Inventory Management System
+                            </strong>
+
+                            <span>
+                                Inventory, Sales &amp; Business Operations System
+                            </span>
+
+                        </span>
+
+                        <span class="project-icon">
+                            +
+                        </span>
+
+                    </button>
+
+
+                    <div class="project-panel">
+
+                        <div class="mrgs-panel">
+
+
+                            <!-- PROJECT INTRO -->
+
+                            <div class="mrgs-project-header">
+
+                                <div>
+
+                                    <span class="project-label">
+                                        PRACTICAL SYSTEM DEVELOPMENT
+                                    </span>
+
+                                    <h2>
+                                        Inventory, Sales &amp;<br>
+                                        Business Operations System
+                                    </h2>
+
+                                    <div class="mrgs-role">
+                                        Developer / IT Systems Support
+                                    </div>
+
+                                </div>
+
+
+                                <div>
+
+                                    <p>
+                                        A practical inventory management
+                                        application I personally designed
+                                        and developed for Mr Richard Global
+                                        Services to support day-to-day
+                                        inventory and business operations.
+                                    </p>
+
+                                    <p>
+                                        The system provides functionality
+                                        for product management, stock
+                                        movement, sales, customers,
+                                        suppliers, reporting, receipts,
+                                        low-stock monitoring, user
+                                        management and data backup.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FEATURES -->
+
+                            <div class="mrgs-feature-grid">
+
+                                <div class="mrgs-feature">
+
+                                    <div class="mrgs-feature-number">
+                                        01
+                                    </div>
+
+                                    <strong>
+                                        Inventory Management
+                                    </strong>
+
+                                    <p>
+                                        Product records, categories,
+                                        stock levels and inventory
+                                        monitoring.
+                                    </p>
+
+                                </div>
+
+
+                                <div class="mrgs-feature">
+
+                                    <div class="mrgs-feature-number">
+                                        02
+                                    </div>
+
+                                    <strong>
+                                        Sales &amp; Transactions
+                                    </strong>
+
+                                    <p>
+                                        Sales processing, receipts and
+                                        transaction management.
+                                    </p>
+
+                                </div>
+
+
+                                <div class="mrgs-feature">
+
+                                    <div class="mrgs-feature-number">
+                                        03
+                                    </div>
+
+                                    <strong>
+                                        Business Reports
+                                    </strong>
+
+                                    <p>
+                                        Reports for sales, products,
+                                        stock movement, suppliers
+                                        and customers.
+                                    </p>
+
+                                </div>
+
+
+                                <div class="mrgs-feature">
+
+                                    <div class="mrgs-feature-number">
+                                        04
+                                    </div>
+
+                                    <strong>
+                                        Backup &amp; Data Management
+                                    </strong>
+
+                                    <p>
+                                        Built-in functionality supporting
+                                        application data backup and
+                                        management.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- MRGS SCREENSHOTS -->
+
+                            <div class="mrgs-gallery">
+
+                                <div class="mrgs-image-card">
+
+                                    <img
+                                        src="images/mrgs-dashboard.jpg"
+                                        alt="MRGS Inventory Management System dashboard">
+
+                                    <div class="mrgs-image-caption">
+
+                                        <strong>
+                                            System Dashboard
+                                        </strong>
+
+                                        <span>
+                                            Overview of inventory, sales
+                                            activity and stock monitoring.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="mrgs-image-card">
+
+                                    <img
+                                        src="images/mrgs-products.jpg"
+                                        alt="MRGS Inventory Management System products screen">
+
+                                    <div class="mrgs-image-caption">
+
+                                        <strong>
+                                            Product &amp; Inventory Management
+                                        </strong>
+
+                                        <span>
+                                            Product records, pricing,
+                                            suppliers, categories and
+                                            stock information.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="mrgs-image-card">
+
+                                    <img
+                                        src="images/mrgs-reports.jpg"
+                                        alt="MRGS Inventory Management System reports center">
+
+                                    <div class="mrgs-image-caption">
+
+                                        <strong>
+                                            Reports Center
+                                        </strong>
+
+                                        <span>
+                                            Centralized reporting for
+                                            sales, products, stock movement,
+                                            suppliers and customers.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- TECHNOLOGY -->
+
+                            <div class="mrgs-technology">
+
+                                <span class="project-label">
+                                    TECHNOLOGY
+                                </span>
+
+                                <h3>
+                                    Built for practical business use.
+                                </h3>
+
+                                <div class="technology-tags">
+
+                                    <span>Electron</span>
+                                    <span>Node.js</span>
+                                    <span>Express.js</span>
+                                    <span>SQLite</span>
+                                    <span>JavaScript</span>
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>ExcelJS</span>
+                                    <span>PDFKit</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PROJECT 03 — TROUBLESHOOTING
+                     ================================================= -->
+
+                <div class="project-item">
+
+                    <button
+                        class="project-trigger"
+                        type="button"
+                        aria-expanded="false">
+
+                        <span class="project-number">
+                            03
+                        </span>
+
+                        <span class="project-trigger-content">
+
+                            <strong>
+                                Troubleshooting Case Study
+                            </strong>
+
+                            <span>
+                                Website Availability Issue
+                            </span>
+
+                        </span>
+
+                        <span class="project-icon">
+                            +
+                        </span>
+
+                    </button>
+
+
+                    <div class="project-panel">
+
+                        <div class="case-panel">
+
+                            <div class="case-header">
+
+                                <div class="case-number">
+                                    CASE 01
+                                </div>
+
+                                <h2>
+                                    Website Availability Issue
+                                </h2>
+
+                                <p>
+                                    A real website support issue encountered
+                                    while managing the LAIM Hotels website.
+                                </p>
+
+                            </div>
+
+
+                            <div class="case-steps">
+
+                                <div class="case-step">
+
+                                    <div class="case-step-number">
+                                        01
+                                    </div>
+
+                                    <h3>
+                                        Issue
+                                    </h3>
+
+                                    <p>
+                                        The website became unavailable as
+                                        a result of a hosting-related issue.
+                                    </p>
+
+                                </div>
+
+
+                                <div class="case-step">
+
+                                    <div class="case-step-number">
+                                        02
+                                    </div>
+
+                                    <h3>
+                                        Investigation
+                                    </h3>
+
+                                    <p>
+                                        I investigated the website and
+                                        hosting environment to identify
+                                        the source of the availability
+                                        problem.
+                                    </p>
+
+                                </div>
+
+
+                                <div class="case-step">
+
+                                    <div class="case-step-number">
+                                        03
+                                    </div>
+
+                                    <h3>
+                                        Resolution
+                                    </h3>
+
+                                    <p>
+                                        I worked through the hosting
+                                        environment and addressed the
+                                        issue responsible for the
+                                        website outage.
+                                    </p>
+
+                                </div>
+
+
+                                <div class="case-step">
+
+                                    <div class="case-step-number">
+                                        04
+                                    </div>
+
+                                    <h3>
+                                        Result
+                                    </h3>
+
+                                    <p>
+                                        The website was restored and
+                                        returned to normal operation.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TECHNOLOGY AREAS
+         ===================================================== -->
+
+    <section class="portfolio-tools">
+
+        <div class="container">
+
+            <div class="portfolio-section-heading">
+
+                <span>
+                    04
+                </span>
+
+                <h2>
+                    Technology Areas
+                </h2>
+
+            </div>
+
+
+            <div class="tools-list">
+
+                <span>WordPress</span>
+                <span>cPanel</span>
+                <span>Web Hosting</span>
+                <span>Domain Management</span>
+                <span>DNS</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Website Backups</span>
+                <span>Windows</span>
+                <span>Microsoft 365</span>
+                <span>LAN / TCP-IP</span>
+                <span>IT Troubleshooting</span>
+                <span>CCTV / IP Cameras</span>
+                <span>Smart Home Automation</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CTA
+         ===================================================== -->
+
+    <section class="portfolio-cta">
+
+        <div class="container">
+
+            <div class="cta-box">
+
+                <div>
+
+                    <span class="section-label">
+                        NEED RELIABLE SUPPORT?
+                    </span>
+
+                    <h2>
+                        Let's keep your website
+                        and IT systems running.
+                    </h2>
+
+                </div>
+
+                <a
+                    href="contact.html"
+                    class="cta-button">
+
+                    Get In Touch
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <a href="index.html" class="logo">
+                ADR<span>.</span>
+            </a>
+
+            <div class="footer-copy">
+
+                <p>
+                    © 2026 Akinrefon Damilola Rufus.
+                    All rights reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         ACCORDION JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+        const projectItems =
+            document.querySelectorAll(".project-item");
+
+
+        projectItems.forEach(function (item) {
+
+            const trigger =
+                item.querySelector(".project-trigger");
+
+
+            trigger.addEventListener("click", function () {
+
+                const isOpen =
+                    item.classList.contains("open");
+
+
+                // Close all projects
+                projectItems.forEach(function (otherItem) {
+
+                    otherItem.classList.remove("open");
+
+                    const otherTrigger =
+                        otherItem.querySelector(".project-trigger");
+
+                    otherTrigger.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                });
+
+
+                // Open selected project
+                if (!isOpen) {
+
+                    item.classList.add("open");
+
+                    trigger.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
