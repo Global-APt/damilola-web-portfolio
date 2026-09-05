@@ -4022,3 +4022,56 @@ img {
         font-size: 14px;
     }
 }
+/* =========================================
+   EDUCATION — MOBILE FINAL FIX
+========================================= */
+
+@media (max-width: 768px) {
+
+    .education-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .education-list {
+        width: 100%;
+    }
+
+    .education-item {
+        display: grid;
+        grid-template-columns: 100px minmax(0, 1fr);
+        align-items: start;
+        column-gap: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .education-item > span {
+        display: block;
+        width: 100%;
+        white-space: nowrap;
+        font-size: 12px;
+        line-height: 1.4;
+        padding-top: 5px;
+        box-sizing: border-box;
+    }
+
+    .education-item > div {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .education-item h3 {
+        margin: 0 0 8px 0;
+        font-size: 18px;
+        line-height: 1.4;
+        overflow-wrap: break-word;
+    }
+
+    .education-item p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.6;
+        overflow-wrap: break-word;
+    }
+}
