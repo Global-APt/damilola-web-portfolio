@@ -4027,3 +4027,48 @@ img {
         overflow-wrap: break-word;
     }
 }
+/* =========================================
+   EDUCATION — MOBILE CLEAN LAYOUT
+========================================= */
+
+@media screen and (max-width: 768px) {
+
+    .education-list .education-item {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 22px 24px !important;
+    }
+
+    .education-list .education-item > span {
+        display: block !important;
+        position: static !important;
+        width: auto !important;
+        margin: 0 0 8px 0 !important;
+        padding: 0 !important;
+        white-space: normal !important;
+        line-height: 1.3 !important;
+    }
+
+    .education-list .education-item > div {
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .education-list .education-item h3 {
+        margin: 0 0 8px 0 !important;
+        padding: 0 !important;
+        line-height: 1.35 !important;
+        overflow-wrap: anywhere !important;
+    }
+
+    .education-list .education-item p {
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.55 !important;
+        overflow-wrap: anywhere !important;
+    }
+}
