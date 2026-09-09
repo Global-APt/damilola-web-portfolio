@@ -4479,3 +4479,67 @@ img {
         margin-left: 0 !important;
     }
 }
+/* =========================================================
+   GLOBAL-APT — FINAL DESKTOP HEADER ALIGNMENT
+   ========================================================= */
+
+@media screen and (min-width: 701px) {
+
+    /* Keep mobile controls completely hidden on desktop */
+    .header .mobile-navigation,
+    .header .mobile-menu-toggle {
+        display: none !important;
+    }
+
+    /* Header container */
+    .nav-container {
+        display: flex !important;
+        align-items: center !important;
+        width: 90% !important;
+        margin: 0 auto !important;
+    }
+
+    /* Logo — smaller and controlled */
+    .nav-container .logo {
+        display: flex !important;
+        align-items: center !important;
+        flex: 0 0 auto !important;
+        width: 190px !important;
+        margin-right: 45px !important;
+    }
+
+    .nav-container .site-logo {
+        display: block !important;
+        width: 180px !important;
+        max-width: 180px !important;
+        height: auto !important;
+        max-height: 55px !important;
+        object-fit: contain !important;
+    }
+
+    /* Main desktop navigation */
+    .nav-container .navigation {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 32px !important;
+        margin-left: 0 !important;
+        margin-right: 35px !important;
+        flex: 0 1 auto !important;
+    }
+
+    /* Navigation links */
+    .nav-container .navigation a {
+        white-space: nowrap !important;
+    }
+
+    /* Let's Talk button */
+    .nav-container .nav-button {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 0 0 auto !important;
+        margin-left: auto !important;
+        white-space: nowrap !important;
+    }
+}
