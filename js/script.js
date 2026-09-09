@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+
     /* =========================================================
        EXISTING ACCORDION FUNCTIONALITY
     ========================================================= */
@@ -29,8 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+
     /* =========================================================
        GLOBAL-APT MOBILE NAVIGATION
+       Mobile menu is created ONLY on screens 700px or smaller.
     ========================================================= */
 
     const navContainer =
@@ -39,182 +42,325 @@ document.addEventListener("DOMContentLoaded", function () {
     const desktopNavigation =
         document.querySelector(".navigation");
 
-    if (!navContainer || !desktopNavigation) return;
+    const header =
+        document.querySelector(".header");
 
-
-    /* ---------------------------------------------------------
-       MOBILE MENU BUTTON
-    --------------------------------------------------------- */
-
-    const mobileToggle =
-        document.createElement("button");
-
-    mobileToggle.className = "mobile-menu-toggle";
-
-    mobileToggle.type = "button";
-
-    mobileToggle.setAttribute(
-        "aria-label",
-        "Open navigation menu"
-    );
-
-    mobileToggle.setAttribute(
-        "aria-expanded",
-        "false"
-    );
-
-    mobileToggle.innerHTML = `
-        <span></span>
-        <span></span>
-        <span></span>
-    `;
-
-
-    /* ---------------------------------------------------------
-       MOBILE NAVIGATION
-    --------------------------------------------------------- */
-
-    const mobileNavigation =
-        document.createElement("nav");
-
-    mobileNavigation.className =
-        "mobile-navigation";
-
-    mobileNavigation.setAttribute(
-        "aria-label",
-        "Mobile navigation"
-    );
-
-
-    /* Copy desktop navigation links */
-
-    const navigationLinks =
-        desktopNavigation.querySelectorAll("a");
-
-    navigationLinks.forEach(function (link) {
-
-        const mobileLink =
-            document.createElement("a");
-
-        mobileLink.href =
-            link.getAttribute("href");
-
-        mobileLink.innerHTML =
-            link.innerHTML.trim();
-
-        if (
-            link.classList.contains("active")
-        ) {
-            mobileLink.classList.add("active");
-        }
-
-        mobileNavigation.appendChild(
-            mobileLink
-        );
-
-    });
-
-
-    /* ---------------------------------------------------------
-       MOBILE CTA
-    --------------------------------------------------------- */
-
-    const mobileCTA =
-        document.createElement("a");
-
-    mobileCTA.href = "contact.html";
-
-    mobileCTA.className =
-        "mobile-navigation-cta";
-
-    mobileCTA.textContent =
-        "Let's Talk";
-
-    mobileNavigation.appendChild(
-        mobileCTA
-    );
-
-
-    /* ---------------------------------------------------------
-       INSERT MOBILE CONTROLS
-    --------------------------------------------------------- */
-
-    navContainer.appendChild(
-        mobileToggle
-    );
-
-    document.querySelector(".header")
-        .appendChild(mobileNavigation);
-
-
-    /* ---------------------------------------------------------
-       TOGGLE MENU
-    --------------------------------------------------------- */
-
-    function toggleMobileMenu() {
-
-        const isOpen =
-            mobileNavigation.classList.contains("open");
-
-        if (isOpen) {
-
-            closeMobileMenu();
-
-        } else {
-
-            openMobileMenu();
-
-        }
-
+    if (!navContainer || !desktopNavigation || !header) {
+        return;
     }
 
 
-    /* ---------------------------------------------------------
-       OPEN
-    --------------------------------------------------------- */
+    /* =========================================================
+       MOBILE NAVIGATION SETUP
+    ========================================================= */
 
-    function openMobileMenu() {
+    let mobileToggle = null;
+    let mobileNavigation = null;
 
-        mobileNavigation.classList.add("open");
 
-        mobileToggle.classList.add("active");
+    function createMobileNavigation() {
 
-        mobileToggle.setAttribute(
-            "aria-expanded",
-            "true"
-        );
+        /* Prevent duplicate creation */
+        if (
+            mobileToggle ||
+            mobileNavigation
+        ) {
+            return;
+        }
+
+
+        /* -----------------------------------------------------
+           MOBILE MENU BUTTON
+        ----------------------------------------------------- */
+
+        mobileToggle =
+            document.createElement("button");
+
+        mobileToggle.className =
+            "mobile-menu-toggle";
+
+        mobileToggle.type = "button";
 
         mobileToggle.setAttribute(
             "aria-label",
-            "Close navigation menu"
+            "Open navigation menu"
         );
-
-        document.body.classList.add(
-            "mobile-menu-open"
-        );
-
-    }
-
-
-    /* ---------------------------------------------------------
-       CLOSE
-    --------------------------------------------------------- */
-
-    function closeMobileMenu() {
-
-        mobileNavigation.classList.remove("open");
-
-        mobileToggle.classList.remove("active");
 
         mobileToggle.setAttribute(
             "aria-expanded",
             "false"
         );
 
-        mobileToggle.setAttribute(
+        mobileToggle.innerHTML = `
+            <span></span>
+            <span></span>
+            <span></span>
+        `;
+
+
+        /* -----------------------------------------------------
+           MOBILE NAVIGATION
+        ----------------------------------------------------- */
+
+        mobileNavigation =
+            document.createElement("nav");
+
+        mobileNavigation.className =
+            "mobile-navigation";
+
+        mobileNavigation.setAttribute(
             "aria-label",
-            "Open navigation menu"
+            "Mobile navigation"
         );
+
+
+        /* -----------------------------------------------------
+           COPY DESKTOP NAVIGATION LINKS
+        ----------------------------------------------------- */
+
+        const navigationLinks =
+            desktopNavigation.querySelectorAll("a");
+
+        navigationLinks.forEach(function (link) {
+
+            const mobileLink =
+                document.createElement("a");
+
+            mobileLink.href =
+                link.getAttribute("href");
+
+            mobileLink.innerHTML =
+                link.innerHTML.trim();
+
+            if (
+                link.classList.contains("active")
+            ) {
+                mobileLink.classList.add("active");
+            }
+
+            mobileNavigation.appendChild(
+                mobileLink
+            );
+
+        });
+
+
+        /* -----------------------------------------------------
+           MOBILE CTA
+        ----------------------------------------------------- */
+
+        const mobileCTA =
+            document.createElement("a");
+
+        mobileCTA.href =
+            "contact.html";
+
+        mobileCTA.className =
+            "mobile-navigation-cta";
+
+        mobileCTA.textContent =
+            "Let's Talk";
+
+        mobileNavigation.appendChild(
+            mobileCTA
+        );
+
+
+        /* -----------------------------------------------------
+           INSERT MOBILE CONTROLS
+        ----------------------------------------------------- */
+
+        navContainer.appendChild(
+            mobileToggle
+        );
+
+        header.appendChild(
+            mobileNavigation
+        );
+
+
+        /* -----------------------------------------------------
+           OPEN MOBILE MENU
+        ----------------------------------------------------- */
+
+        function openMobileMenu() {
+
+            mobileNavigation.classList.add(
+                "open"
+            );
+
+            mobileToggle.classList.add(
+                "active"
+            );
+
+            mobileToggle.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+
+            mobileToggle.setAttribute(
+                "aria-label",
+                "Close navigation menu"
+            );
+
+            document.body.classList.add(
+                "mobile-menu-open"
+            );
+
+        }
+
+
+        /* -----------------------------------------------------
+           CLOSE MOBILE MENU
+        ----------------------------------------------------- */
+
+        function closeMobileMenu() {
+
+            mobileNavigation.classList.remove(
+                "open"
+            );
+
+            mobileToggle.classList.remove(
+                "active"
+            );
+
+            mobileToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            mobileToggle.setAttribute(
+                "aria-label",
+                "Open navigation menu"
+            );
+
+            document.body.classList.remove(
+                "mobile-menu-open"
+            );
+
+        }
+
+
+        /* -----------------------------------------------------
+           TOGGLE MOBILE MENU
+        ----------------------------------------------------- */
+
+        mobileToggle.addEventListener(
+            "click",
+            function (event) {
+
+                event.stopPropagation();
+
+                const isOpen =
+                    mobileNavigation.classList.contains(
+                        "open"
+                    );
+
+                if (isOpen) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+
+            }
+        );
+
+
+        /* -----------------------------------------------------
+           CLOSE AFTER CLICKING A LINK
+        ----------------------------------------------------- */
+
+        mobileNavigation
+            .querySelectorAll("a")
+            .forEach(function (link) {
+
+                link.addEventListener(
+                    "click",
+                    closeMobileMenu
+                );
+
+            });
+
+
+        /* -----------------------------------------------------
+           CLOSE WITH ESCAPE
+        ----------------------------------------------------- */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape" &&
+                    mobileNavigation.classList.contains(
+                        "open"
+                    )
+                ) {
+
+                    closeMobileMenu();
+
+                    mobileToggle.focus();
+
+                }
+
+            }
+        );
+
+
+        /* -----------------------------------------------------
+           CLOSE WHEN CLICKING OUTSIDE
+        ----------------------------------------------------- */
+
+        document.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    mobileNavigation &&
+                    mobileToggle &&
+                    !mobileNavigation.contains(
+                        event.target
+                    ) &&
+                    !mobileToggle.contains(
+                        event.target
+                    ) &&
+                    mobileNavigation.classList.contains(
+                        "open"
+                    )
+                ) {
+
+                    closeMobileMenu();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       REMOVE MOBILE NAVIGATION
+       When returning to desktop width.
+    ========================================================= */
+
+    function removeMobileNavigation() {
+
+        if (mobileToggle) {
+
+            mobileToggle.remove();
+
+            mobileToggle = null;
+
+        }
+
+        if (mobileNavigation) {
+
+            mobileNavigation.remove();
+
+            mobileNavigation = null;
+
+        }
 
         document.body.classList.remove(
             "mobile-menu-open"
@@ -223,72 +369,48 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ---------------------------------------------------------
-       BUTTON CLICK
-    --------------------------------------------------------- */
+    /* =========================================================
+       CHECK SCREEN SIZE
+    ========================================================= */
 
-    mobileToggle.addEventListener(
-        "click",
-        toggleMobileMenu
-    );
+    function handleNavigationResize() {
 
+        if (window.innerWidth <= 700) {
 
-    /* ---------------------------------------------------------
-       CLOSE AFTER CLICKING A LINK
-    --------------------------------------------------------- */
+            createMobileNavigation();
 
-    mobileNavigation
-        .querySelectorAll("a")
-        .forEach(function (link) {
+        } else {
 
-            link.addEventListener(
-                "click",
-                closeMobileMenu
-            );
-
-        });
-
-
-    /* ---------------------------------------------------------
-       CLOSE WITH ESCAPE
-    --------------------------------------------------------- */
-
-    document.addEventListener(
-        "keydown",
-        function (event) {
-
-            if (
-                event.key === "Escape" &&
-                mobileNavigation.classList.contains("open")
-            ) {
-
-                closeMobileMenu();
-
-                mobileToggle.focus();
-
-            }
+            removeMobileNavigation();
 
         }
-    );
+
+    }
 
 
-    /* ---------------------------------------------------------
-       CLOSE WHEN CLICKING OUTSIDE
-    --------------------------------------------------------- */
+    /* =========================================================
+       INITIAL CHECK
+    ========================================================= */
 
-    document.addEventListener(
-        "click",
-        function (event) {
+    handleNavigationResize();
 
-            if (
-                !mobileNavigation.contains(event.target) &&
-                !mobileToggle.contains(event.target) &&
-                mobileNavigation.classList.contains("open")
-            ) {
 
-                closeMobileMenu();
+    /* =========================================================
+       RESPONSIVE SCREEN CHANGE
+    ========================================================= */
 
-            }
+    let resizeTimer;
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            clearTimeout(resizeTimer);
+
+            resizeTimer = setTimeout(
+                handleNavigationResize,
+                100
+            );
 
         }
     );
