@@ -4940,3 +4940,106 @@ img {
         margin-bottom: 20px !important;
     }
 }
+/* =========================================================
+   GLOBAL-APT — FINAL FOOTER
+   ========================================================= */
+
+.footer {
+    width: 100% !important;
+    background: #101620 !important;
+    color: #ffffff !important;
+    padding: 42px 0 !important;
+}
+
+.footer-content {
+    width: min(1340px, 90%) !important;
+    margin: 0 auto !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 18px !important;
+
+    text-align: center !important;
+}
+
+.footer-brand {
+    display: flex !important;
+    align-items: baseline !important;
+    justify-content: center !important;
+    gap: 8px !important;
+
+    flex-wrap: wrap !important;
+}
+
+.footer-brand strong {
+    color: #ffffff !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.5px !important;
+}
+
+.footer-brand span {
+    color: #b08d57 !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+}
+
+.footer-copy {
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.footer-copy p {
+    margin: 3px 0 !important;
+
+    color: #aeb5c0 !important;
+
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+
+    overflow-wrap: break-word !important;
+}
+
+
+/* =========================================================
+   MOBILE FOOTER
+   ========================================================= */
+
+@media screen and (max-width: 700px) {
+
+    .footer {
+        padding: 38px 0 !important;
+    }
+
+    .footer-content {
+        width: 90% !important;
+        gap: 16px !important;
+    }
+
+    .footer-brand {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 2px !important;
+    }
+
+    .footer-brand strong {
+        font-size: 21px !important;
+    }
+
+    .footer-brand span {
+        font-size: 15px !important;
+    }
+
+    .footer-copy {
+        width: 100% !important;
+    }
+
+    .footer-copy p {
+        font-size: 12px !important;
+        line-height: 1.6 !important;
+        margin: 4px 0 !important;
+    }
+}
