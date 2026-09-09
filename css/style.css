@@ -4447,3 +4447,35 @@ img {
         margin-left: 0 !important;
     }
 }
+/* =========================================================
+   GLOBAL-APT — DESKTOP HEADER CLEANUP
+   ========================================================= */
+
+@media screen and (min-width: 701px) {
+
+    /* Hide the mobile navigation on desktop */
+    .header .mobile-navigation,
+    .header .mobile-menu-toggle {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* Give the logo more breathing room */
+    .nav-container .logo {
+        flex-shrink: 0 !important;
+        margin-right: 35px !important;
+    }
+
+    /* Improve spacing between navigation and CTA */
+    .nav-container .navigation {
+        margin-left: auto !important;
+        margin-right: 50px !important;
+        gap: 38px !important;
+    }
+
+    /* Keep Let's Talk button properly separated */
+    .nav-container .nav-button {
+        flex-shrink: 0 !important;
+        margin-left: 0 !important;
+    }
+}
