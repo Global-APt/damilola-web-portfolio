@@ -4893,3 +4893,50 @@ img {
         line-height: 1.55 !important;
     }
 }
+@media screen and (max-width: 700px) {
+
+    .header,
+    .nav-container {
+        height: 68px !important;
+        min-height: 68px !important;
+    }
+
+    .nav-container .site-logo {
+        width: 120px !important;
+        max-width: 120px !important;
+        max-height: 40px !important;
+    }
+
+    .nav-container .mobile-menu-toggle {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    .header .mobile-navigation {
+        top: 68px !important;
+    }
+
+    .hero-content {
+        padding-top: 20px !important;
+    }
+
+    .hero h1 {
+        font-size: 35px !important;
+        line-height: 1.08 !important;
+        margin-bottom: 22px !important;
+    }
+
+    .hero-text {
+        font-size: 18px !important;
+        line-height: 1.52 !important;
+        margin-bottom: 26px !important;
+    }
+
+    .hero-buttons {
+        margin-bottom: 42px !important;
+    }
+
+    .hero-trust {
+        margin-bottom: 20px !important;
+    }
+}
