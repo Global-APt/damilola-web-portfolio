@@ -4156,3 +4156,262 @@ img {
         font-size: 20px !important;
     }
 }
+/* =========================================================
+   GLOBAL-APT — FINAL MOBILE HEADER
+========================================================= */
+
+@media screen and (max-width: 700px) {
+
+    .header {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 10000;
+        overflow: visible !important;
+    }
+
+    .nav-container {
+        width: 90% !important;
+        height: 68px !important;
+        min-height: 68px !important;
+        margin: 0 auto !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+
+        gap: 15px !important;
+    }
+
+    /* Website logo */
+    .nav-container .site-logo {
+        display: block !important;
+        width: 145px !important;
+        max-width: 145px !important;
+        height: auto !important;
+        max-height: 48px !important;
+
+        object-fit: contain !important;
+        object-position: left center !important;
+
+        flex-shrink: 1 !important;
+    }
+
+    /* Hide desktop navigation */
+    .nav-container .navigation {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* Hide desktop CTA */
+    .nav-container .nav-button {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* Hamburger */
+    .nav-container .mobile-menu-toggle {
+        display: flex !important;
+
+        width: 44px !important;
+        height: 44px !important;
+
+        flex-shrink: 0 !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        border: 1px solid #dedbd4 !important;
+        border-radius: 8px !important;
+
+        background: #ffffff !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        flex-direction: column !important;
+        gap: 5px !important;
+
+        cursor: pointer !important;
+    }
+
+    .nav-container .mobile-menu-toggle span {
+        display: block !important;
+
+        width: 20px !important;
+        height: 2px !important;
+
+        background: #182033 !important;
+
+        border-radius: 2px !important;
+
+        transition: all 0.25s ease !important;
+    }
+
+    /* Hamburger becomes X */
+    .nav-container .mobile-menu-toggle.active {
+        background: #182033 !important;
+        border-color: #182033 !important;
+    }
+
+    .nav-container .mobile-menu-toggle.active span {
+        background: #ffffff !important;
+    }
+
+    .nav-container .mobile-menu-toggle.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg) !important;
+    }
+
+    .nav-container .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0 !important;
+    }
+
+    .nav-container .mobile-menu-toggle.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg) !important;
+    }
+
+
+    /* -----------------------------------------------------
+       MOBILE MENU
+    ----------------------------------------------------- */
+
+    .header .mobile-navigation {
+        display: flex !important;
+
+        position: absolute !important;
+
+        top: 68px !important;
+        left: 0 !important;
+
+        width: 100% !important;
+
+        padding: 18px 5% 28px !important;
+
+        background: #ffffff !important;
+
+        flex-direction: column !important;
+
+        border-top: 1px solid #e4e0d8 !important;
+        border-bottom: 1px solid #e4e0d8 !important;
+
+        box-shadow:
+            0 18px 35px rgba(24, 32, 51, 0.14) !important;
+
+        z-index: 9999 !important;
+
+        opacity: 0 !important;
+        visibility: hidden !important;
+
+        transform: translateY(-10px) !important;
+
+        pointer-events: none !important;
+
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0.25s ease !important;
+    }
+
+    .header .mobile-navigation.open {
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        transform: translateY(0) !important;
+
+        pointer-events: auto !important;
+    }
+
+
+    /* Menu links */
+
+    .header .mobile-navigation a {
+        display: block !important;
+
+        width: 100% !important;
+
+        padding: 15px 5px !important;
+
+        border-bottom: 1px solid #eeeae3 !important;
+
+        color: #182033 !important;
+
+        font-size: 15px !important;
+        font-weight: 600 !important;
+
+        text-decoration: none !important;
+
+        white-space: normal !important;
+    }
+
+    .header .mobile-navigation a.active {
+        color: #b08d57 !important;
+    }
+
+
+    /* Let's Talk */
+
+    .header .mobile-navigation .mobile-navigation-cta {
+        display: flex !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        width: 100% !important;
+
+        margin-top: 18px !important;
+
+        padding: 14px 20px !important;
+
+        border: none !important;
+        border-radius: 7px !important;
+
+        background: #182033 !important;
+
+        color: #ffffff !important;
+
+        font-size: 14px !important;
+        font-weight: 700 !important;
+
+        text-align: center !important;
+    }
+
+    .header .mobile-navigation .mobile-navigation-cta:hover {
+        background: #b08d57 !important;
+        color: #ffffff !important;
+    }
+
+
+    /* Prevent page from scrolling behind menu */
+
+    body.mobile-menu-open {
+        overflow: hidden !important;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media screen and (max-width: 400px) {
+
+    .nav-container {
+        height: 64px !important;
+        min-height: 64px !important;
+    }
+
+    .nav-container .site-logo {
+        width: 125px !important;
+        max-width: 125px !important;
+        max-height: 44px !important;
+    }
+
+    .nav-container .mobile-menu-toggle {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    .header .mobile-navigation {
+        top: 64px !important;
+    }
+}
