@@ -4544,118 +4544,352 @@ img {
     }
 }
 /* =========================================================
-   GLOBAL-APT — MOBILE POLISH
-   Header, hero spacing & mobile typography
+   GLOBAL-APT — FINAL MOBILE LAYOUT
+   Clean mobile header + hero
    ========================================================= */
 
 @media screen and (max-width: 700px) {
 
-    /* Mobile header */
+    /* -----------------------------------------------------
+       MOBILE HEADER
+    ----------------------------------------------------- */
+
     .header {
+        position: sticky !important;
+        top: 0 !important;
+        width: 100% !important;
         height: 76px !important;
         min-height: 76px !important;
+        z-index: 10000 !important;
+        overflow: visible !important;
     }
 
     .nav-container {
+        width: 90% !important;
         height: 76px !important;
         min-height: 76px !important;
-        padding: 0 4px !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+
+        gap: 15px !important;
     }
 
-    /* Refined mobile logo */
+
+    /* -----------------------------------------------------
+       MOBILE LOGO
+    ----------------------------------------------------- */
+
     .nav-container .logo {
         display: flex !important;
         align-items: center !important;
+
         flex: 0 0 auto !important;
+        width: auto !important;
         margin: 0 !important;
     }
 
     .nav-container .site-logo {
         display: block !important;
+
         width: 120px !important;
         max-width: 120px !important;
+
         height: auto !important;
         max-height: 42px !important;
-        object-fit: contain !important;
-    }
 
-    /* Hamburger */
-    .nav-container .mobile-menu-toggle {
-        width: 44px !important;
-        height: 44px !important;
+        object-fit: contain !important;
+        object-position: left center !important;
+
         flex-shrink: 0 !important;
     }
-}
 
-/* =========================================================
-   VERY SMALL PHONES
-   ========================================================= */
 
-@media screen and (max-width: 400px) {
+    /* -----------------------------------------------------
+       HIDE DESKTOP NAVIGATION
+    ----------------------------------------------------- */
 
-    .nav-container .site-logo {
-        width: 135px !important;
-        max-width: 135px !important;
+    .nav-container .navigation,
+    .nav-container .nav-button {
+        display: none !important;
+        visibility: hidden !important;
     }
+
+
+    /* -----------------------------------------------------
+       HAMBURGER
+    ----------------------------------------------------- */
+
+    .nav-container .mobile-menu-toggle {
+        display: flex !important;
+
+        width: 44px !important;
+        height: 44px !important;
+
+        flex: 0 0 44px !important;
+        flex-shrink: 0 !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        border: 1px solid #dedbd4 !important;
+        border-radius: 8px !important;
+
+        background: #ffffff !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+
+        gap: 5px !important;
+
+        cursor: pointer !important;
+    }
+
+    .nav-container .mobile-menu-toggle span {
+        display: block !important;
+
+        width: 20px !important;
+        height: 2px !important;
+
+        background: #182033 !important;
+
+        border-radius: 2px !important;
+
+        transition: all 0.25s ease !important;
+    }
+
+
+    /* -----------------------------------------------------
+       MOBILE MENU OPEN STATE
+    ----------------------------------------------------- */
+
+    .nav-container .mobile-menu-toggle.active {
+        background: #182033 !important;
+        border-color: #182033 !important;
+    }
+
+    .nav-container .mobile-menu-toggle.active span {
+        background: #ffffff !important;
+    }
+
+    .nav-container .mobile-menu-toggle.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg) !important;
+    }
+
+    .nav-container .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0 !important;
+    }
+
+    .nav-container .mobile-menu-toggle.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg) !important;
+    }
+
+
+    /* -----------------------------------------------------
+       MOBILE NAVIGATION PANEL
+    ----------------------------------------------------- */
+
+    .header .mobile-navigation {
+        top: 76px !important;
+        left: 0 !important;
+        width: 100% !important;
+
+        padding: 18px 5% 28px !important;
+
+        background: #ffffff !important;
+
+        border-top: 1px solid #e4e0d8 !important;
+        border-bottom: 1px solid #e4e0d8 !important;
+
+        box-shadow:
+            0 18px 35px rgba(24, 32, 51, 0.14) !important;
+
+        z-index: 9999 !important;
+    }
+
+
+    /* -----------------------------------------------------
+       MOBILE HERO
+    ----------------------------------------------------- */
 
     .hero {
-        padding-top: 60px !important;
-    }
-
-    .hero h1 {
-        font-size: 44px !important;
-        line-height: 1.04 !important;
-    }
-
-    .hero p {
-        font-size: 20px !important;
-        line-height: 1.5 !important;
-    }
-}
-/* =========================================================
-   GLOBAL-APT — FINAL MOBILE HERO POLISH
-   ========================================================= */
-
-@media screen and (max-width: 700px) {
-
-    /* Reduce excessive space below the header */
-    .hero {
-        padding-top: 35px !important;
+        padding-top: 0 !important;
         margin-top: 0 !important;
     }
 
-    /* Better mobile headline scale */
+    .hero-content {
+        padding-top: 28px !important;
+    }
+
+
+    /* Eyebrow */
+    .hero .eyebrow {
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+
+        letter-spacing: 2px !important;
+
+        margin-bottom: 16px !important;
+    }
+
+
+    /* Main headline */
     .hero h1 {
-        font-size: 42px !important;
+        max-width: 100% !important;
+
+        font-size: 36px !important;
         line-height: 1.08 !important;
+
         letter-spacing: -1px !important;
-        margin-top: 12px !important;
+
+        margin-top: 0 !important;
+        margin-bottom: 24px !important;
+    }
+
+
+    /* Description */
+    .hero-text {
+        max-width: 100% !important;
+
+        font-size: 18px !important;
+        line-height: 1.55 !important;
+
         margin-bottom: 28px !important;
     }
 
-    /* More comfortable body text */
-    .hero p {
-        font-size: 20px !important;
-        line-height: 1.55 !important;
-        margin-bottom: 30px !important;
+
+    /* -----------------------------------------------------
+       MOBILE BUTTONS
+    ----------------------------------------------------- */
+
+    .hero-buttons {
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        width: 100% !important;
+
+        gap: 12px !important;
+
+        margin-bottom: 38px !important;
+    }
+
+    .hero-buttons .btn {
+        width: 100% !important;
+
+        text-align: center !important;
+
+        padding: 15px 20px !important;
+
+        min-height: 54px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+
+    /* -----------------------------------------------------
+       MOBILE STATS
+    ----------------------------------------------------- */
+
+    .hero-trust {
+        display: grid !important;
+
+        grid-template-columns: repeat(3, 1fr) !important;
+
+        gap: 12px !important;
+
+        width: 100% !important;
+    }
+
+    .hero-trust div {
+        min-width: 0 !important;
+
+        padding-right: 10px !important;
+        margin-right: 0 !important;
+    }
+
+    .hero-trust strong {
+        font-size: 22px !important;
+    }
+
+    .hero-trust span {
+        font-size: 10px !important;
+        line-height: 1.4 !important;
+    }
+
+
+    /* -----------------------------------------------------
+       MOBILE PROFILE CARD
+    ----------------------------------------------------- */
+
+    .hero-card {
+        width: 100% !important;
+
+        padding: 22px !important;
+
+        border-radius: 15px !important;
+
+        margin-top: 35px !important;
+    }
+
+    .profile-photo {
+        height: 350px !important;
+    }
+
+
+    /* Prevent horizontal overflow */
+    html,
+    body {
+        overflow-x: hidden !important;
     }
 }
 
 
-/* Smaller phones */
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
 @media screen and (max-width: 400px) {
 
-    .hero {
-        padding-top: 28px !important;
+    .header,
+    .nav-container {
+        height: 72px !important;
+        min-height: 72px !important;
+    }
+
+    .nav-container .site-logo {
+        width: 115px !important;
+        max-width: 115px !important;
+        max-height: 40px !important;
+    }
+
+    .nav-container .mobile-menu-toggle {
+        width: 42px !important;
+        height: 42px !important;
+        flex-basis: 42px !important;
+    }
+
+    .header .mobile-navigation {
+        top: 72px !important;
+    }
+
+    .hero-content {
+        padding-top: 24px !important;
     }
 
     .hero h1 {
-        font-size: 38px !important;
+        font-size: 34px !important;
         line-height: 1.08 !important;
     }
 
-    .hero p {
-        font-size: 19px !important;
-        line-height: 1.5 !important;
+    .hero-text {
+        font-size: 17px !important;
+        line-height: 1.55 !important;
     }
 }
