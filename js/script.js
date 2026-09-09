@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
     /* =========================================================
        EXISTING ACCORDION FUNCTIONALITY
     ========================================================= */
@@ -29,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     });
-
 
     /* =========================================================
        GLOBAL-APT MOBILE NAVIGATION
