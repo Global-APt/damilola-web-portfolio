@@ -4543,3 +4543,90 @@ img {
         white-space: nowrap !important;
     }
 }
+/* =========================================================
+   GLOBAL-APT — MOBILE POLISH
+   Header, hero spacing & mobile typography
+   ========================================================= */
+
+@media screen and (max-width: 700px) {
+
+    /* Keep the mobile header compact */
+    .header {
+        height: 82px !important;
+        min-height: 82px !important;
+    }
+
+    .nav-container {
+        height: 82px !important;
+        min-height: 82px !important;
+    }
+
+    /* Keep logo at its current good size */
+    .nav-container .site-logo {
+        width: 145px !important;
+        max-width: 145px !important;
+        max-height: 48px !important;
+    }
+
+    /* Keep hamburger compact and balanced */
+    .nav-container .mobile-menu-toggle {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    /* Reduce the large empty space below header */
+    .hero {
+        padding-top: 75px !important;
+    }
+
+    /* Slightly refine the main mobile heading */
+    .hero h1 {
+        font-size: 52px !important;
+        line-height: 1.02 !important;
+        letter-spacing: -1.5px !important;
+    }
+
+    /* Improve the supporting paragraph */
+    .hero p {
+        font-size: 22px !important;
+        line-height: 1.55 !important;
+    }
+
+    /* Keep buttons comfortable without excessive height */
+    .hero .hero-buttons,
+    .hero .cta-buttons {
+        gap: 14px !important;
+    }
+
+    .hero .hero-buttons a,
+    .hero .cta-buttons a {
+        min-height: 58px !important;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media screen and (max-width: 400px) {
+
+    .nav-container .site-logo {
+        width: 135px !important;
+        max-width: 135px !important;
+    }
+
+    .hero {
+        padding-top: 60px !important;
+    }
+
+    .hero h1 {
+        font-size: 44px !important;
+        line-height: 1.04 !important;
+    }
+
+    .hero p {
+        font-size: 20px !important;
+        line-height: 1.5 !important;
+    }
+}
