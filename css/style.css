@@ -4550,60 +4550,42 @@ img {
 
 @media screen and (max-width: 700px) {
 
-    /* Keep the mobile header compact */
+    /* Mobile header */
     .header {
-        height: 82px !important;
-        min-height: 82px !important;
+        height: 76px !important;
+        min-height: 76px !important;
     }
 
     .nav-container {
-        height: 82px !important;
-        min-height: 82px !important;
+        height: 76px !important;
+        min-height: 76px !important;
+        padding: 0 4px !important;
     }
 
-    /* Keep logo at its current good size */
+    /* Refined mobile logo */
+    .nav-container .logo {
+        display: flex !important;
+        align-items: center !important;
+        flex: 0 0 auto !important;
+        margin: 0 !important;
+    }
+
     .nav-container .site-logo {
-        width: 145px !important;
-        max-width: 145px !important;
-        max-height: 48px !important;
+        display: block !important;
+        width: 120px !important;
+        max-width: 120px !important;
+        height: auto !important;
+        max-height: 42px !important;
+        object-fit: contain !important;
     }
 
-    /* Keep hamburger compact and balanced */
+    /* Hamburger */
     .nav-container .mobile-menu-toggle {
         width: 44px !important;
         height: 44px !important;
-    }
-
-    /* Reduce the large empty space below header */
-    .hero {
-        padding-top: 75px !important;
-    }
-
-    /* Slightly refine the main mobile heading */
-    .hero h1 {
-        font-size: 52px !important;
-        line-height: 1.02 !important;
-        letter-spacing: -1.5px !important;
-    }
-
-    /* Improve the supporting paragraph */
-    .hero p {
-        font-size: 22px !important;
-        line-height: 1.55 !important;
-    }
-
-    /* Keep buttons comfortable without excessive height */
-    .hero .hero-buttons,
-    .hero .cta-buttons {
-        gap: 14px !important;
-    }
-
-    .hero .hero-buttons a,
-    .hero .cta-buttons a {
-        min-height: 58px !important;
+        flex-shrink: 0 !important;
     }
 }
-
 
 /* =========================================================
    VERY SMALL PHONES
