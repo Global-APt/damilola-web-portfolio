@@ -4415,3 +4415,35 @@ img {
         top: 64px !important;
     }
 }
+/* =========================================================
+   GLOBAL-APT — DESKTOP HEADER CLEANUP
+   ========================================================= */
+
+@media screen and (min-width: 701px) {
+
+    /* Hide the mobile menu on desktop */
+    .mobile-navigation,
+    .mobile-menu-toggle {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* Keep the logo stable */
+    .nav-container .logo {
+        flex-shrink: 0 !important;
+        margin-right: 35px !important;
+    }
+
+    /* Give the navigation proper breathing room */
+    .nav-container .navigation {
+        margin-left: auto !important;
+        margin-right: 50px !important;
+        gap: 38px !important;
+    }
+
+    /* Keep the CTA separated from navigation */
+    .nav-container .nav-button {
+        flex-shrink: 0 !important;
+        margin-left: 0 !important;
+    }
+}
