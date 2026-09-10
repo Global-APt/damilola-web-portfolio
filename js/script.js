@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ========================================================= */
 
     /* Keep the Global-Apt logo in the HEADER only.
-       The homepage footer intentionally uses text branding,
-       so no logo is injected into any footer. */
+       The homepage footer intentionally uses text branding. */
     const headerLogo = document.querySelector(".header .logo");
 
     if (headerLogo && !headerLogo.querySelector("img")) {
@@ -18,6 +17,15 @@ document.addEventListener("DOMContentLoaded", function () {
             >
         `;
         headerLogo.setAttribute("aria-label", "Global-Apt Media & Technologies Home");
+    }
+
+    /* Remove any legacy ADR/logo element from inner-page footers.
+       This intentionally does nothing to the homepage because its
+       footer has no .logo element. */
+    const footerLogo = document.querySelector(".footer .logo");
+
+    if (footerLogo) {
+        footerLogo.remove();
     }
 
     const desktopNavigation = document.querySelector(".navigation");
