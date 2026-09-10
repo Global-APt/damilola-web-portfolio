@@ -28,6 +28,18 @@ document.addEventListener("DOMContentLoaded", function () {
         footerLogo.remove();
     }
 
+    /* Remove the extra footer brand from the HOME PAGE only.
+       The homepage should not display a second Global-Apt name in the footer. */
+    const isHomePage =
+        window.location.pathname === "/" ||
+        window.location.pathname.endsWith("/index.html");
+
+    if (isHomePage) {
+        document.querySelectorAll(".footer .footer-brand").forEach(function (brand) {
+            brand.remove();
+        });
+    }
+
     const desktopNavigation = document.querySelector(".navigation");
 
     if (desktopNavigation && !desktopNavigation.querySelector('a[href="seo.html"]')) {
