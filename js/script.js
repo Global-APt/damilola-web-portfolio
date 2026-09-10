@@ -306,6 +306,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let mobileToggle = null;
     let mobileNavigation = null;
+    let mobileBackdrop = null;
 
     function createMobileNavigation() {
         if (mobileToggle || mobileNavigation) {
@@ -326,6 +327,20 @@ document.addEventListener("DOMContentLoaded", function () {
         mobileNavigation = document.createElement("nav");
         mobileNavigation.className = "mobile-navigation";
         mobileNavigation.setAttribute("aria-label", "Mobile navigation");
+
+        mobileBackdrop = document.createElement("div");
+        mobileBackdrop.className = "mobile-menu-backdrop";
+        mobileBackdrop.setAttribute("aria-hidden", "true");
+        Object.assign(mobileBackdrop.style, {
+            position: "fixed",
+            left: "0",
+            right: "0",
+            bottom: "0",
+            top: "68px",
+            background: "#ffffff",
+            zIndex: "9998",
+            display: "none"
+        });
 
         const navigationLinks = desktopNavigation.querySelectorAll("a");
 
@@ -348,6 +363,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mobileNavigation.appendChild(mobileCTA);
 
         navContainer.appendChild(mobileToggle);
+        header.appendChild(mobileBackdrop);
         header.appendChild(mobileNavigation);
 
         function openMobileMenu() {
@@ -355,6 +371,7 @@ document.addEventListener("DOMContentLoaded", function () {
             mobileToggle.classList.add("active");
             mobileToggle.setAttribute("aria-expanded", "true");
             mobileToggle.setAttribute("aria-label", "Close navigation menu");
+            mobileBackdrop.style.display = "block";
             document.body.classList.add("mobile-menu-open");
         }
 
@@ -363,6 +380,7 @@ document.addEventListener("DOMContentLoaded", function () {
             mobileToggle.classList.remove("active");
             mobileToggle.setAttribute("aria-expanded", "false");
             mobileToggle.setAttribute("aria-label", "Open navigation menu");
+            mobileBackdrop.style.display = "none";
             document.body.classList.remove("mobile-menu-open");
         }
 
@@ -377,6 +395,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 openMobileMenu();
             }
         });
+
+        mobileBackdrop.addEventListener("click", closeMobileMenu);
 
         mobileNavigation.querySelectorAll("a").forEach(function (link) {
             link.addEventListener("click", closeMobileMenu);
@@ -414,6 +434,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (mobileNavigation) {
             mobileNavigation.remove();
             mobileNavigation = null;
+        }
+
+        if (mobileBackdrop) {
+            mobileBackdrop.remove();
+            mobileBackdrop = null;
         }
 
         document.body.classList.remove("mobile-menu-open");
