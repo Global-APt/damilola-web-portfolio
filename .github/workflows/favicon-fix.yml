@@ -1,0 +1,47 @@
+name: Global-Apt Favicon Fix
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix-favicon:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Standardize favicon on homepage and SEO page
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          favicon = 'images/global-apt-logo-webp.webp?v=3'
+          for filename in ('index.html', 'seo.html'):
+              p = Path(filename)
+              if not p.exists():
+                  continue
+              s = p.read_text(encoding='utf-8')
+              icon_tag = re.compile(r'\s*<link[^>]+rel=["\']icon["\'][^>]*>', re.I)
+              s = icon_tag.sub('', s)
+              head_end = s.lower().find('</head>')
+              if head_end != -1:
+                  s = s[:head_end] + f'    <link rel="icon" type="image/webp" href="{favicon}">\n' + s[head_end:]
+              p.write_text(s, encoding='utf-8')
+
+      - name: Commit favicon fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html seo.html
+          if git diff --cached --quiet; then
+            echo "No favicon changes required."
+          else
+            git commit -m "Fix Global-Apt favicon on homepage and SEO page"
+            git push
+          fi
