@@ -66,6 +66,196 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
     }
 
+    /* =========================================================
+       PORTFOLIO RESPONSIVE SPACING
+       Keep the existing design, but tighten the portfolio page
+       so desktop and mobile sections have balanced breathing room.
+    ========================================================= */
+
+    if (window.location.pathname.endsWith("/portfolio.html")) {
+        const portfolioStyle = document.createElement("style");
+        portfolioStyle.textContent = `
+            .projects-section {
+                padding: 82px 0 !important;
+            }
+
+            .projects-intro {
+                margin-bottom: 38px !important;
+            }
+
+            .laim-panel,
+            .mrgs-panel,
+            .case-panel {
+                padding: 32px !important;
+            }
+
+            .laim-project-header,
+            .mrgs-project-header {
+                gap: 45px !important;
+                margin-bottom: 32px !important;
+            }
+
+            .laim-responsibilities,
+            .mrgs-technology {
+                margin-top: 30px !important;
+                padding-top: 30px !important;
+            }
+
+            .portfolio-tools {
+                padding: 72px 0 !important;
+            }
+
+            .portfolio-final-cta {
+                padding: 78px 0 !important;
+            }
+
+            .portfolio-final-cta .container {
+                max-width: 900px;
+            }
+
+            .portfolio-final-cta h2 {
+                margin-bottom: 16px !important;
+            }
+
+            .portfolio-final-cta p {
+                margin-bottom: 25px !important;
+            }
+
+            @media (max-width: 700px) {
+                .projects-section {
+                    padding: 55px 0 !important;
+                }
+
+                .projects-intro {
+                    margin-bottom: 28px !important;
+                }
+
+                .projects-intro h2 {
+                    font-size: 30px !important;
+                    line-height: 1.18 !important;
+                }
+
+                .project-accordion {
+                    gap: 10px !important;
+                }
+
+                .project-trigger {
+                    grid-template-columns: 34px 1fr 30px !important;
+                    padding: 18px 16px !important;
+                }
+
+                .project-trigger-content strong {
+                    font-size: 16px !important;
+                    line-height: 1.35 !important;
+                }
+
+                .project-trigger-content span {
+                    font-size: 12px !important;
+                    line-height: 1.5 !important;
+                }
+
+                .project-icon {
+                    width: 28px !important;
+                    height: 28px !important;
+                    font-size: 18px !important;
+                }
+
+                .laim-panel,
+                .mrgs-panel,
+                .case-panel {
+                    padding: 22px 16px !important;
+                }
+
+                .laim-project-header,
+                .mrgs-project-header {
+                    gap: 22px !important;
+                    margin-bottom: 28px !important;
+                }
+
+                .laim-project-header h2,
+                .mrgs-project-header h2,
+                .case-header h2 {
+                    font-size: 28px !important;
+                    line-height: 1.2 !important;
+                }
+
+                .laim-gallery,
+                .mrgs-gallery {
+                    grid-template-columns: 1fr !important;
+                    gap: 14px !important;
+                }
+
+                .mrgs-image-card:nth-child(3) {
+                    grid-column: auto !important;
+                }
+
+                .laim-responsibility-grid,
+                .mrgs-feature-grid,
+                .case-steps {
+                    grid-template-columns: 1fr !important;
+                }
+
+                .mrgs-feature,
+                .case-step {
+                    border-right: none !important;
+                    border-bottom: 1px solid #dedbd4 !important;
+                }
+
+                .mrgs-feature:last-child,
+                .case-step:last-child {
+                    border-bottom: none !important;
+                }
+
+                .portfolio-tools {
+                    padding: 55px 0 !important;
+                }
+
+                .tools-list {
+                    margin-top: 22px !important;
+                    gap: 8px !important;
+                }
+
+                .tools-list span {
+                    padding: 8px 11px !important;
+                }
+
+                .portfolio-final-cta {
+                    padding: 52px 0 !important;
+                }
+
+                .portfolio-final-cta h2 {
+                    font-size: 29px !important;
+                    line-height: 1.2 !important;
+                    margin-bottom: 14px !important;
+                }
+
+                .portfolio-final-cta p {
+                    font-size: 15px !important;
+                    line-height: 1.7 !important;
+                    margin-bottom: 22px !important;
+                }
+
+                .portfolio-final-cta .btn {
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        `;
+        document.head.appendChild(portfolioStyle);
+
+        /* Identify the final CTA by its heading so the spacing fix
+           remains independent of the page's existing class names. */
+        const portfolioSections = Array.from(document.querySelectorAll("main section"));
+        const portfolioFinalCta = portfolioSections.find(function (section) {
+            return section.textContent.toLowerCase().includes("need reliable") &&
+                   section.textContent.toLowerCase().includes("keep your website");
+        });
+
+        if (portfolioFinalCta) {
+            portfolioFinalCta.classList.add("portfolio-final-cta");
+        }
+    }
+
 
     /* =========================================================
        EXISTING ACCORDION FUNCTIONALITY
