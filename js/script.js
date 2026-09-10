@@ -17,24 +17,17 @@ document.addEventListener("DOMContentLoaded", function () {
         headerLogo.setAttribute("aria-label", "Global-Apt Media & Technologies Home");
     }
 
-    const footerLogo = document.querySelector(".footer .logo");
-
-    if (footerLogo) {
-        footerLogo.remove();
-    }
-
-    const isHomePage =
-        window.location.pathname === "/" ||
-        window.location.pathname.endsWith("/index.html");
-
-    if (isHomePage) {
-        document.querySelectorAll(".footer .footer-brand").forEach(function (brand) {
-            brand.remove();
-        });
+    if (headerLogo) {
+        headerLogo.setAttribute("aria-label", "Global-Apt Media & Technologies Home");
     }
 
     const desktopNavigation = document.querySelector(".navigation");
 
+    if (desktopNavigation) {
+        desktopNavigation.setAttribute("aria-label", "Main navigation");
+    }
+
+    /* Add the SEO page to every site's primary navigation. */
     if (desktopNavigation && !desktopNavigation.querySelector('a[href="seo.html"]')) {
         const seoLink = document.createElement("a");
         seoLink.href = "seo.html";
@@ -50,13 +43,44 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     }
 
-    const footerCopy = document.querySelector(".footer-copy");
+    /* =========================================================
+       GLOBAL FOOTER STANDARDIZATION
+       ========================================================= */
 
-    if (footerCopy) {
-        footerCopy.innerHTML = `
-            <p>© 2026 Global-Apt Media &amp; Technologies.</p>
-            <p>Founded by Akinrefon Damilola Rufus. All rights reserved.</p>
-        `;
+    const footer = document.querySelector(".footer");
+
+    if (footer) {
+        const legacyFooterLogo = footer.querySelector(".logo");
+        if (legacyFooterLogo) {
+            legacyFooterLogo.remove();
+        }
+
+        const footerContent = footer.querySelector(".footer-content");
+
+        if (footerContent) {
+            let footerBrand = footerContent.querySelector(".footer-brand");
+
+            if (!footerBrand) {
+                footerBrand = document.createElement("div");
+                footerBrand.className = "footer-brand";
+                footerBrand.innerHTML = `
+                    <strong>GLOBAL-APT</strong>
+                    <span>Media &amp; Technologies</span>
+                `;
+
+                const footerCopyExisting = footerContent.querySelector(".footer-copy");
+                footerContent.insertBefore(footerBrand, footerCopyExisting || null);
+            }
+        }
+
+        const footerCopy = footer.querySelector(".footer-copy");
+
+        if (footerCopy) {
+            footerCopy.innerHTML = `
+                <p>© 2026 Global-Apt Media &amp; Technologies.</p>
+                <p>Founded by Akinrefon Damilola Rufus. All rights reserved.</p>
+            `;
+        }
     }
 
     /* =========================================================
