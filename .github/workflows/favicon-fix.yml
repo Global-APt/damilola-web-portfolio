@@ -1,19 +1,22 @@
 name: Global-Apt Favicon Fix
 
 on:
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: ["Final SEO Cleanup"]
+    types: [completed]
 
 permissions:
   contents: write
 
 jobs:
   fix-favicon:
-    if: github.actor != 'github-actions[bot]'
+    if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout latest main
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Standardize favicon on homepage and SEO page
         shell: python
@@ -21,7 +24,7 @@ jobs:
           from pathlib import Path
           import re
 
-          favicon = 'images/global-apt-logo-webp.webp?v=3'
+          favicon = 'images/global-apt-logo-webp.webp?v=4'
           for filename in ('index.html', 'seo.html'):
               p = Path(filename)
               if not p.exists():
@@ -42,6 +45,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No favicon changes required."
           else
-            git commit -m "Fix Global-Apt favicon on homepage and SEO page"
+            git commit -m "Fix Global-Apt favicon after SEO cleanup"
             git push
           fi
