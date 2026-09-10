@@ -1,0 +1,90 @@
+name: Final SEO Cleanup
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Apply controlled SEO metadata cleanup
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+          logo = 'https://globalaptech.online/images/global-apt-logo-webp.webp'
+
+          # Correct the homepage's stale logo URL without touching page content.
+          p = root / 'index.html'
+          if p.exists():
+              s = p.read_text(encoding='utf-8')
+              s = s.replace('https://globalaptech.online/images/global-apt-logo.webp', logo)
+              p.write_text(s, encoding='utf-8')
+
+          page_meta = {
+              'about.html': ('About | Akinrefon Damilola Rufus', 'https://globalaptech.online/about.html', 'About Akinrefon Damilola Rufus and Global-Apt Media & Technologies, including IT support, web support, website maintenance and technology experience.'),
+              'services.html': ('Services | Akinrefon Damilola Rufus | Global-Apt', 'https://globalaptech.online/services.html', 'Web development, website maintenance, SEO, hosting, DNS, IT support, CCTV and smart technology services from Global-Apt Media & Technologies.'),
+              'portfolio.html': ('Portfolio | Akinrefon Damilola Rufus | Global-Apt', 'https://globalaptech.online/portfolio.html', 'Portfolio of Akinrefon Damilola Rufus featuring web support, website maintenance, WordPress, hosting, DNS and practical technology projects.'),
+              'contact.html': ('Contact | Akinrefon Damilola Rufus | Global-Apt', 'https://globalaptech.online/contact.html', 'Contact Akinrefon Damilola Rufus and Global-Apt Media & Technologies for web, IT support, SEO and technology services.'),
+          }
+
+          for filename, (title, canonical, description) in page_meta.items():
+              p = root / filename
+              if not p.exists():
+                  continue
+              s = p.read_text(encoding='utf-8')
+              head_end = s.lower().find('</head>')
+              if head_end == -1:
+                  continue
+
+              # Add only metadata that is missing; preserve existing design/content.
+              if 'rel="canonical"' not in s:
+                  s = s[:head_end] + f'    <link rel="canonical" href="{canonical}">\n' + s[head_end:]
+                  head_end = s.lower().find('</head>')
+              if 'name="robots"' not in s:
+                  s = s[:head_end] + '    <meta name="robots" content="index, follow">\n' + s[head_end:]
+                  head_end = s.lower().find('</head>')
+              if 'property="og:title"' not in s:
+                  block = (
+                      f'    <meta property="og:title" content="{title}">\n'
+                      f'    <meta property="og:description" content="{description}">\n'
+                      f'    <meta property="og:type" content="website">\n'
+                      f'    <meta property="og:url" content="{canonical}">\n'
+                      f'    <meta property="og:site_name" content="Global-Apt Media & Technologies">\n'
+                      f'    <meta property="og:image" content="{logo}">\n'
+                  )
+                  s = s[:head_end] + block + s[head_end:]
+                  head_end = s.lower().find('</head>')
+              if 'name="author"' not in s:
+                  s = s[:head_end] + '    <meta name="author" content="Akinrefon Damilola Rufus">\n' + s[head_end:]
+
+              # Standardize only the old visible text-logo markup when present.
+              s = re.sub(
+                  r'<a href="index\.html" class="logo">\s*ADR<span>\.</span>\s*</a>',
+                  '<a href="index.html" class="logo" aria-label="Global-Apt Media & Technologies Home">\n                <img src="images/global-apt-logo-webp.webp" alt="Global-Apt Media & Technologies" class="site-logo">\n            </a>',
+                  s,
+                  flags=re.I,
+              )
+              p.write_text(s, encoding='utf-8')
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html about.html services.html portfolio.html contact.html
+          if git diff --cached --quiet; then
+            echo "No cleanup changes required."
+          else
+            git commit -m "Finalize SEO metadata and page headers"
+            git push
+          fi
