@@ -23,6 +23,7 @@ jobs:
 
           root = Path('.')
           logo = 'https://globalaptech.online/images/global-apt-logo-webp.webp'
+          favicon = 'images/global-apt-logo-webp.webp?v=2'
 
           # Correct the homepage's stale logo URL without touching page content.
           p = root / 'index.html'
@@ -47,7 +48,6 @@ jobs:
               if head_end == -1:
                   continue
 
-              # Add only metadata that is missing; preserve existing design/content.
               if 'rel="canonical"' not in s:
                   s = s[:head_end] + f'    <link rel="canonical" href="{canonical}">\n' + s[head_end:]
                   head_end = s.lower().find('</head>')
@@ -75,6 +75,13 @@ jobs:
                   s,
                   flags=re.I,
               )
+
+              # Use the actual Global-Apt logo as the browser tab icon on every page.
+              icon_tag = re.compile(r'\s*<link[^>]+rel=["\']icon["\'][^>]*>', re.I)
+              s = icon_tag.sub('', s)
+              head_end = s.lower().find('</head>')
+              s = s[:head_end] + f'    <link rel="icon" type="image/webp" href="{favicon}">\n' + s[head_end:]
+
               p.write_text(s, encoding='utf-8')
 
       - name: Commit changes
@@ -85,6 +92,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No cleanup changes required."
           else
-            git commit -m "Finalize SEO metadata and page headers"
+            git commit -m "Standardize Global-Apt favicon across pages"
             git push
           fi
