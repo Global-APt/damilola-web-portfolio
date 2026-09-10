@@ -307,6 +307,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let mobileToggle = null;
     let mobileNavigation = null;
     let mobileBackdrop = null;
+    let mobileMenuStyle = null;
+    let previousHeaderZIndex = "";
 
     function createMobileNavigation() {
         if (mobileToggle || mobileNavigation) {
@@ -328,18 +330,23 @@ document.addEventListener("DOMContentLoaded", function () {
         mobileNavigation.className = "mobile-navigation";
         mobileNavigation.setAttribute("aria-label", "Mobile navigation");
 
+        /*
+           The backdrop covers the complete viewport. The menu panel is
+           intentionally kept separate so it reads as a floating surface.
+        */
         mobileBackdrop = document.createElement("div");
         mobileBackdrop.className = "mobile-menu-backdrop";
         mobileBackdrop.setAttribute("aria-hidden", "true");
         Object.assign(mobileBackdrop.style, {
             position: "fixed",
-            left: "0",
-            right: "0",
-            bottom: "0",
-            top: "68px",
-            background: "#ffffff",
+            inset: "0",
+            background: "rgba(16, 22, 32, 0.24)",
+            backdropFilter: "blur(2px)",
+            WebkitBackdropFilter: "blur(2px)",
             zIndex: "9998",
-            display: "none"
+            display: "none",
+            opacity: "0",
+            transition: "opacity 180ms ease"
         });
 
         const navigationLinks = desktopNavigation.querySelectorAll("a");
@@ -362,16 +369,67 @@ document.addEventListener("DOMContentLoaded", function () {
         mobileCTA.textContent = "Let's Talk";
         mobileNavigation.appendChild(mobileCTA);
 
+        /* Refined mobile panel presentation. Inline !important rules override
+           the older full-width mobile navigation rules without disturbing the
+           desktop navigation styles. */
+        mobileMenuStyle = document.createElement("style");
+        mobileMenuStyle.textContent = `
+            @media screen and (max-width: 700px) {
+                .mobile-navigation {
+                    width: auto !important;
+                    left: 12px !important;
+                    right: 12px !important;
+                    max-height: calc(100vh - 96px) !important;
+                    overflow-y: auto !important;
+                    border: 1px solid #e6e2db !important;
+                    border-radius: 0 0 14px 14px !important;
+                    box-shadow: 0 20px 45px rgba(16, 22, 32, 0.18) !important;
+                    z-index: 9999 !important;
+                }
+
+                .mobile-navigation a {
+                    transition: background 140ms ease, color 140ms ease !important;
+                }
+
+                .mobile-navigation a:not(.mobile-navigation-cta):active,
+                .mobile-navigation a:not(.mobile-navigation-cta):focus-visible {
+                    background: #f6f3ed !important;
+                    color: #182033 !important;
+                }
+
+                .mobile-navigation-cta {
+                    margin-top: 8px !important;
+                    border-radius: 7px !important;
+                }
+            }
+        `;
+        document.head.appendChild(mobileMenuStyle);
+
         navContainer.appendChild(mobileToggle);
         header.appendChild(mobileBackdrop);
         header.appendChild(mobileNavigation);
 
+        function positionMobileMenu() {
+            if (!mobileNavigation) return;
+
+            const headerHeight = header.getBoundingClientRect().height;
+            mobileNavigation.style.setProperty("top", (headerHeight + 8) + "px", "important");
+        }
+
         function openMobileMenu() {
+            positionMobileMenu();
+            previousHeaderZIndex = header.style.zIndex;
+            header.style.zIndex = "10000";
+
+            mobileBackdrop.style.display = "block";
+            requestAnimationFrame(function () {
+                mobileBackdrop.style.opacity = "1";
+            });
+
             mobileNavigation.classList.add("open");
             mobileToggle.classList.add("active");
             mobileToggle.setAttribute("aria-expanded", "true");
             mobileToggle.setAttribute("aria-label", "Close navigation menu");
-            mobileBackdrop.style.display = "block";
             document.body.classList.add("mobile-menu-open");
         }
 
@@ -380,7 +438,15 @@ document.addEventListener("DOMContentLoaded", function () {
             mobileToggle.classList.remove("active");
             mobileToggle.setAttribute("aria-expanded", "false");
             mobileToggle.setAttribute("aria-label", "Open navigation menu");
-            mobileBackdrop.style.display = "none";
+            mobileBackdrop.style.opacity = "0";
+
+            setTimeout(function () {
+                if (mobileBackdrop) {
+                    mobileBackdrop.style.display = "none";
+                }
+            }, 180);
+
+            header.style.zIndex = previousHeaderZIndex || "";
             document.body.classList.remove("mobile-menu-open");
         }
 
@@ -423,6 +489,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 closeMobileMenu();
             }
         });
+
+        window.addEventListener("resize", function () {
+            if (
+                mobileNavigation &&
+                mobileNavigation.classList.contains("open") &&
+                window.innerWidth <= 700
+            ) {
+                positionMobileMenu();
+            }
+        });
     }
 
     function removeMobileNavigation() {
@@ -441,6 +517,13 @@ document.addEventListener("DOMContentLoaded", function () {
             mobileBackdrop = null;
         }
 
+        if (mobileMenuStyle) {
+            mobileMenuStyle.remove();
+            mobileMenuStyle = null;
+        }
+
+        header.style.zIndex = previousHeaderZIndex || "";
+        previousHeaderZIndex = "";
         document.body.classList.remove("mobile-menu-open");
     }
 
