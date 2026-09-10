@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
        GLOBAL-APT SITE STANDARDIZATION
     ========================================================= */
 
+    /* Keep the Global-Apt logo in the HEADER only.
+       The homepage footer intentionally uses text branding,
+       so no logo is injected into any footer. */
     const headerLogo = document.querySelector(".header .logo");
 
     if (headerLogo && !headerLogo.querySelector("img")) {
@@ -15,19 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
             >
         `;
         headerLogo.setAttribute("aria-label", "Global-Apt Media & Technologies Home");
-    }
-
-    const footerLogo = document.querySelector(".footer .logo");
-
-    if (footerLogo && !footerLogo.querySelector("img")) {
-        footerLogo.innerHTML = `
-            <img
-                src="images/global-apt-logo-webp.webp"
-                alt="Global-Apt Media & Technologies"
-                class="site-logo"
-            >
-        `;
-        footerLogo.setAttribute("aria-label", "Global-Apt Media & Technologies Home");
     }
 
     const desktopNavigation = document.querySelector(".navigation");
