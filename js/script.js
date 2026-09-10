@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
        GLOBAL-APT SITE STANDARDIZATION
     ========================================================= */
 
-    /* Keep the Global-Apt logo in the HEADER only.
-       The homepage footer intentionally uses text branding. */
     const headerLogo = document.querySelector(".header .logo");
 
     if (headerLogo && !headerLogo.querySelector("img")) {
@@ -19,17 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
         headerLogo.setAttribute("aria-label", "Global-Apt Media & Technologies Home");
     }
 
-    /* Remove any legacy ADR/logo element from inner-page footers.
-       This intentionally does nothing to the homepage because its
-       footer has no .logo element. */
     const footerLogo = document.querySelector(".footer .logo");
 
     if (footerLogo) {
         footerLogo.remove();
     }
 
-    /* Remove the extra footer brand from the HOME PAGE only.
-       The homepage should not display a second Global-Apt name in the footer. */
     const isHomePage =
         window.location.pathname === "/" ||
         window.location.pathname.endsWith("/index.html");
@@ -68,8 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================================
        PORTFOLIO RESPONSIVE SPACING
-       Keep the existing design, but tighten the portfolio page
-       so desktop and mobile sections have balanced breathing room.
+       Existing design preserved; only portfolio spacing is refined.
     ========================================================= */
 
     if (window.location.pathname.endsWith("/portfolio.html")) {
@@ -243,12 +235,11 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
         document.head.appendChild(portfolioStyle);
 
-        /* Identify the final CTA by its heading so the spacing fix
-           remains independent of the page's existing class names. */
         const portfolioSections = Array.from(document.querySelectorAll("main section"));
         const portfolioFinalCta = portfolioSections.find(function (section) {
-            return section.textContent.toLowerCase().includes("need reliable") &&
-                   section.textContent.toLowerCase().includes("keep your website");
+            const text = section.textContent.toLowerCase();
+            return text.includes("need reliable") &&
+                   (text.includes("support your website") || text.includes("keep your website"));
         });
 
         if (portfolioFinalCta) {
@@ -256,64 +247,43 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
     /* =========================================================
        EXISTING ACCORDION FUNCTIONALITY
     ========================================================= */
 
-    const accordionItems =
-        document.querySelectorAll(".accordion-item");
+    const accordionItems = document.querySelectorAll(".accordion-item");
 
     accordionItems.forEach(function (item) {
-
-        const button =
-            item.querySelector(".accordion-header");
-
+        const button = item.querySelector(".accordion-header");
         if (!button) return;
 
         button.addEventListener("click", function () {
-
             accordionItems.forEach(function (otherItem) {
-
                 if (otherItem !== item) {
                     otherItem.classList.remove("active");
                 }
-
             });
 
             item.classList.toggle("active");
-
         });
-
     });
-
 
     /* =========================================================
        GLOBAL-APT MOBILE NAVIGATION
        Mobile menu is created ONLY on screens 700px or smaller.
     ========================================================= */
 
-    const navContainer =
-        document.querySelector(".nav-container");
-
-    const header =
-        document.querySelector(".header");
+    const navContainer = document.querySelector(".nav-container");
+    const header = document.querySelector(".header");
 
     if (!navContainer || !desktopNavigation || !header) {
         return;
     }
 
-
-    /* =========================================================
-       MOBILE NAVIGATION SETUP
-    ========================================================= */
-
     let mobileToggle = null;
     let mobileNavigation = null;
 
-
     function createMobileNavigation() {
-
         if (mobileToggle || mobileNavigation) {
             return;
         }
@@ -336,7 +306,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const navigationLinks = desktopNavigation.querySelectorAll("a");
 
         navigationLinks.forEach(function (link) {
-
             const mobileLink = document.createElement("a");
             mobileLink.href = link.getAttribute("href");
             mobileLink.innerHTML = link.innerHTML.trim();
@@ -376,8 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mobileToggle.addEventListener("click", function (event) {
             event.stopPropagation();
 
-            const isOpen =
-                mobileNavigation.classList.contains("open");
+            const isOpen = mobileNavigation.classList.contains("open");
 
             if (isOpen) {
                 closeMobileMenu();
@@ -386,11 +354,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        mobileNavigation
-            .querySelectorAll("a")
-            .forEach(function (link) {
-                link.addEventListener("click", closeMobileMenu);
-            });
+        mobileNavigation.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", closeMobileMenu);
+        });
 
         document.addEventListener("keydown", function (event) {
             if (
@@ -415,13 +381,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
-    /* =========================================================
-       REMOVE MOBILE NAVIGATION
-    ========================================================= */
-
     function removeMobileNavigation() {
-
         if (mobileToggle) {
             mobileToggle.remove();
             mobileToggle = null;
@@ -435,13 +395,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.remove("mobile-menu-open");
     }
 
-
-    /* =========================================================
-       CHECK SCREEN SIZE
-    ========================================================= */
-
     function handleNavigationResize() {
-
         if (window.innerWidth <= 700) {
             createMobileNavigation();
         } else {
@@ -449,22 +403,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
-    /* =========================================================
-       INITIAL CHECK
-    ========================================================= */
-
     handleNavigationResize();
-
-
-    /* =========================================================
-       RESPONSIVE SCREEN CHANGE
-    ========================================================= */
 
     let resizeTimer;
 
     window.addEventListener("resize", function () {
-
         clearTimeout(resizeTimer);
 
         resizeTimer = setTimeout(
