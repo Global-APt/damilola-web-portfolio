@@ -2375,6 +2375,7 @@ img {
     justify-content: center;
 }
 
+
 .project-tag {
     color: var(--gold);
     font-size: 11px;
@@ -3954,7 +3955,7 @@ img {
     font-size: 14px;
 }.form-success {
     display: none;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     padding: 14px 18px;
     border: 1px solid #d6d2ca;
     border-radius: 7px;
@@ -5132,5 +5133,19 @@ img {
     .cta .btn-primary {
         min-height: 52px !important;
         padding: 14px 24px !important;
+    }
+}
+
+/* =========================================================
+   GLOBAL-APT — MOBILE MENU BACKDROP FIX
+   Keep the opened navigation visually above all page content.
+   ========================================================= */
+
+@media screen and (max-width: 700px) {
+    .header .mobile-navigation.open {
+        z-index: 99999 !important;
+        box-shadow:
+            0 18px 35px rgba(24, 32, 51, 0.14),
+            0 100vh 0 100vh #ffffff !important;
     }
 }
