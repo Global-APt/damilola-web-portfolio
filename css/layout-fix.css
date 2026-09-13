@@ -1,0 +1,110 @@
+/* =========================================================
+   GLOBAL-APT — LAYOUT STABILITY FIX
+   Preserve the formal desktop arrangement on zoomed desktop
+   and medium-width screens. Mobile remains <= 700px.
+========================================================= */
+
+/* Medium desktop / zoomed desktop: keep the formal two-column layout. */
+@media screen and (min-width: 801px) and (max-width: 1000px) {
+
+    .hero-grid {
+        grid-template-columns: 1.53fr 1fr !important;
+        gap: 45px !important;
+        align-items: start !important;
+    }
+
+    .hero-content {
+        padding-top: 70px !important;
+    }
+
+    .hero-card {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+    }
+
+    .profile-photo {
+        height: 400px !important;
+    }
+
+    .service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 20px !important;
+    }
+
+    .services-large-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 22px !important;
+    }
+
+    .about-main-grid {
+        grid-template-columns: 1.2fr 0.8fr !important;
+        gap: 55px !important;
+    }
+
+    .about-highlight {
+        max-width: none !important;
+    }
+
+    .strengths-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .education-grid {
+        grid-template-columns: 0.8fr 1.2fr !important;
+        gap: 50px !important;
+    }
+
+    .project-card {
+        grid-template-columns: 1.15fr 0.85fr !important;
+    }
+
+    .responsibility-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .case-study-card {
+        grid-template-columns: 0.75fr 1.25fr !important;
+    }
+
+    .approach-grid {
+        grid-template-columns: 0.85fr 1.15fr !important;
+        gap: 55px !important;
+    }
+
+    .contact-grid {
+        grid-template-columns: 0.85fr 1.15fr !important;
+        gap: 55px !important;
+    }
+}
+
+/* Keep the homepage hero headline clean: no location-based eyebrow. */
+.hero-content > .eyebrow {
+    color: #b08d57;
+}
+
+/* Ensure the hero profile image stays on the right and is not stretched. */
+@media screen and (min-width: 1001px) {
+    .hero-card {
+        align-self: start !important;
+    }
+
+    .profile-photo img {
+        object-fit: cover !important;
+        object-position: center top !important;
+        transform: none !important;
+    }
+}
+
+/* True mobile behavior remains below 800px; the existing 700px rules
+   still control the compact navigation and mobile hero. */
+@media screen and (max-width: 800px) {
+    .hero-grid,
+    .services-large-grid,
+    .about-main-grid,
+    .project-card,
+    .case-study-card,
+    .contact-grid {
+        width: 100%;
+    }
+}
