@@ -84,14 +84,28 @@ jobs:
 
               p.write_text(s, encoding='utf-8')
 
+          # Load the isolated layout-fix stylesheet after the main stylesheet
+          # on every HTML page. This changes only responsive layout behavior.
+          for p in root.glob('*.html'):
+              s = p.read_text(encoding='utf-8')
+              if 'css/layout-fix.css' not in s:
+                  needle = '<link rel="stylesheet" href="css/style.css">'
+                  if needle in s:
+                      s = s.replace(
+                          needle,
+                          needle + '\n    <link rel="stylesheet" href="css/layout-fix.css?v=1">',
+                          1,
+                      )
+                      p.write_text(s, encoding='utf-8')
+
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html about.html services.html portfolio.html contact.html
+          git add -- '*.html'
           if git diff --cached --quiet; then
             echo "No cleanup changes required."
           else
-            git commit -m "Standardize Global-Apt favicon across pages"
+            git commit -m "Apply stable responsive layout across pages"
             git push
           fi
