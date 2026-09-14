@@ -1,9 +1,9 @@
 /* GLOBAL-APT HOMEPAGE — FORMAL HERO ARRANGEMENT */
 
-/* Desktop: restore the approved two-column hero composition. */
+/* Desktop: approved two-column hero composition. */
 @media screen and (min-width: 801px) {
   .hero {
-    padding: 76px 0 90px !important;
+    padding: 76px 0 55px !important;
   }
 
   .hero-content {
@@ -62,7 +62,6 @@
     margin-bottom: 0 !important;
   }
 
-  /* The trust-statistics strip was intentionally removed from the homepage. */
   .hero-trust {
     display: none !important;
   }
@@ -101,6 +100,7 @@
 @media screen and (max-width: 800px) {
   .hero {
     padding-top: 28px !important;
+    padding-bottom: 45px !important;
   }
 
   .hero-content {
