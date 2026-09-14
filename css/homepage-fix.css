@@ -29,7 +29,6 @@
     padding: 38px !important;
   }
 
-  /* The homepage uses a direct image inside the card, not .profile-photo. */
   .hero-card > img {
     width: 100% !important;
     height: 410px !important;
@@ -60,12 +59,12 @@
   .hero-actions {
     display: flex !important;
     gap: 20px !important;
-    margin-bottom: 58px !important;
+    margin-bottom: 0 !important;
   }
 
+  /* The trust-statistics strip was intentionally removed from the homepage. */
   .hero-trust {
-    display: flex !important;
-    align-items: center !important;
+    display: none !important;
   }
 }
 
@@ -93,10 +92,8 @@
     font-size: 17px !important;
   }
 
-  .hero-trust div {
-    min-width: 0 !important;
-    margin-right: 20px !important;
-    padding-right: 20px !important;
+  .hero-trust {
+    display: none !important;
   }
 }
 
@@ -129,5 +126,9 @@
 
   .hero-actions {
     display: flex !important;
+  }
+
+  .hero-trust {
+    display: none !important;
   }
 }
