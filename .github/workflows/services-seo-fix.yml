@@ -1,0 +1,44 @@
+name: Services SEO Fix
+
+on: push
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update services.html
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('services.html')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('<meta name="description"\n        content="Web Support, Website Maintenance and IT Support services by Akinrefon Damilola Rufus.">', '<meta name="description" content="IT support, website maintenance, WordPress, hosting, DNS, networking and practical technology services serving Ido, Osogbo and across Osun State, Nigeria.">', 1)
+          s = s.replace('<title>Services | Akinrefon Damilola Rufus</title>', '<title>IT &amp; Web Services in Osogbo, Nigeria | Global-Apt</title>', 1)
+          s = s.replace('<meta property="og:title" content="Services | Akinrefon Damilola Rufus | Global-Apt">', '<meta property="og:title" content="IT &amp; Web Services in Osogbo, Nigeria | Global-Apt">', 1)
+          s = s.replace('<meta property="og:description" content="Web development, website maintenance, SEO, hosting, DNS, IT support, CCTV and smart technology services from Global-Apt Media &amp; Technologies.">', '<meta property="og:description" content="IT support, website maintenance, WordPress, hosting, DNS, networking and practical technology services from Global-Apt Media &amp; Technologies in Osogbo and across Osun State.">', 1)
+          marker = '    <link rel="icon" type="image/webp" href="images/global-apt-logo-webp.webp?v=2">\n'
+          data = '''    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebPage","@id":"https://globalaptech.online/services.html#webpage","name":"IT & Web Services in Osogbo, Nigeria","url":"https://globalaptech.online/services.html","description":"IT support, website maintenance, WordPress, hosting, DNS, networking and practical technology services serving Ido, Osogbo and across Osun State, Nigeria.","about":{"@id":"https://globalaptech.online/#business"}}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","@id":"https://globalaptech.online/services.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://globalaptech.online/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://globalaptech.online/services.html"}]}
+    </script>
+'''
+          if marker not in s:
+              raise SystemExit('favicon marker not found')
+          s = s.replace(marker, marker + data, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit and remove workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/services-seo-fix.yml
+          git add services.html .github/workflows/services-seo-fix.yml
+          git commit -m "Strengthen services hub SEO"
+          git push
