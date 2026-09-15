@@ -1,6 +1,6 @@
 name: Services SEO Fix
 
-on: push
+on: [push]
 
 permissions:
   contents: write
