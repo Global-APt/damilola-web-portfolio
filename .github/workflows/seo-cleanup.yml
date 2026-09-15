@@ -34,7 +34,7 @@ jobs:
 
           page_meta = {
               'about.html': ('About | Akinrefon Damilola Rufus', 'https://globalaptech.online/about.html', 'About Akinrefon Damilola Rufus and Global-Apt Media & Technologies, including IT support, web support, website maintenance and technology experience.'),
-              'services.html': ('Services | Akinrefon Damilola Rufus | Global-Apt', 'https://globalaptech.online/services.html', 'Web development, website maintenance, SEO, hosting, DNS, IT support, CCTV and smart technology services from Global-Apt Media & Technologies.'),
+              'services.html': ('IT & Web Services in Osogbo, Nigeria | Global-Apt', 'https://globalaptech.online/services.html', 'IT support, website maintenance, WordPress, hosting, DNS, networking and practical technology services serving Ido, Osogbo and across Osun State, Nigeria.'),
               'portfolio.html': ('Portfolio | Akinrefon Damilola Rufus | Global-Apt', 'https://globalaptech.online/portfolio.html', 'Portfolio of Akinrefon Damilola Rufus featuring web support, website maintenance, WordPress, hosting, DNS and practical technology projects.'),
               'contact.html': ('Contact | Akinrefon Damilola Rufus | Global-Apt', 'https://globalaptech.online/contact.html', 'Contact Akinrefon Damilola Rufus and Global-Apt Media & Technologies for web, IT support, SEO and technology services.'),
           }
@@ -82,6 +82,39 @@ jobs:
               head_end = s.lower().find('</head>')
               s = s[:head_end] + f'    <link rel="icon" type="image/webp" href="{favicon}">\n' + s[head_end:]
 
+              p.write_text(s, encoding='utf-8')
+
+          # Strengthen the Services hub without changing its visible layout/content.
+          p = root / 'services.html'
+          if p.exists():
+              s = p.read_text(encoding='utf-8')
+              head_end = s.lower().find('</head>')
+              if head_end != -1:
+                  if 'services.html#breadcrumb' not in s:
+                      structured_data = '''    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"WebPage",
+      "@id":"https://globalaptech.online/services.html#webpage",
+      "name":"IT & Web Services in Osogbo, Nigeria",
+      "url":"https://globalaptech.online/services.html",
+      "description":"IT support, website maintenance, WordPress, hosting, DNS, networking and practical technology services serving Ido, Osogbo and across Osun State, Nigeria.",
+      "about":{"@id":"https://globalaptech.online/#business"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"BreadcrumbList",
+      "@id":"https://globalaptech.online/services.html#breadcrumb",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://globalaptech.online/"},
+        {"@type":"ListItem","position":2,"name":"Services","item":"https://globalaptech.online/services.html"}
+      ]
+    }
+    </script>
+'''
+                      s = s[:head_end] + structured_data + s[head_end:]
               p.write_text(s, encoding='utf-8')
 
           # Load the isolated layout-fix stylesheet after the main stylesheet
