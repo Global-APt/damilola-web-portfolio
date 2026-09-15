@@ -21,40 +21,55 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://globalaptech.online/#business",
-    "name": "Global-Apt Media & Technologies",
-    "url": "https://globalaptech.online/",
-    "logo": "https://globalaptech.online/images/global-apt-logo-webp.webp",
-    "image": "https://globalaptech.online/images/global-apt-logo-webp.webp",
-    "telephone": "+2348161887329",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Ajetunmobi Area, Ido",
-      "addressLocality": "Ido",
-      "postalCode": "232111",
-      "addressRegion": "Osun State",
-      "addressCountry": "NG"
-    },
-    "areaServed": [
-      { "@type": "City", "name": "Osogbo" },
-      { "@type": "AdministrativeArea", "name": "Osun State" },
-      { "@type": "Country", "name": "Nigeria" }
-    ],
-    "founder": {
-      "@type": "Person",
-      "name": "Akinrefon Damilola Rufus",
-      "url": "https://globalaptech.online/about.html"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/akinrefon-damilola-42539a247"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+2348161887329",
-      "contactType": "customer service",
-      "areaServed": "NG"
-    }
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://globalaptech.online/#business",
+        "name": "Global-Apt Media & Technologies",
+        "alternateName": "Global-Apt",
+        "url": "https://globalaptech.online/",
+        "logo": "https://globalaptech.online/images/global-apt-logo-webp.webp",
+        "image": "https://globalaptech.online/images/global-apt-logo-webp.webp",
+        "telephone": "+2348161887329",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Ajetunmobi Area, Ido",
+          "addressLocality": "Ido",
+          "postalCode": "232111",
+          "addressRegion": "Osun State",
+          "addressCountry": "NG"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Osogbo" },
+          { "@type": "AdministrativeArea", "name": "Osun State" },
+          { "@type": "Country", "name": "Nigeria" }
+        ],
+        "founder": {
+          "@type": "Person",
+          "name": "Akinrefon Damilola Rufus",
+          "url": "https://globalaptech.online/about.html"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/akinrefon-damilola-42539a247"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+2348161887329",
+          "contactType": "customer service",
+          "areaServed": "NG"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://globalaptech.online/#website",
+        "url": "https://globalaptech.online/",
+        "name": "Global-Apt Media & Technologies",
+        "alternateName": "Global-Apt",
+        "publisher": {
+          "@id": "https://globalaptech.online/#business"
+        }
+      }
+    ]
   }
   </script>
     <link rel="icon" type="image/webp" href="images/global-apt-logo-webp.webp?v=4">
