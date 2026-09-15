@@ -1,7 +1,9 @@
 name: Services SEO Update
 
 on:
-  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/services-seo-update.yml'
 
 permissions:
   contents: write
